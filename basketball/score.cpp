@@ -14,10 +14,21 @@ int main(){
     char ch;
     int aScore;
     bool isAPoint;
-    bool isScoreVal;
 
     while(!fileIn.eof()){
-        fileIn>>ch;
+        fileIn.get(ch);
+
+        if(ch=='\n'){
+            if(aScore>1||aScore<-1){
+                if(aScore>1){
+                    cout<<"A\n";
+                }
+                else{
+                    cout<<"B\n";
+                }
+            }
+        }
+
         if(ch=='A'||ch=='B'){
             isAPoint=ch=='A';
         }
