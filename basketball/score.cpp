@@ -30,8 +30,14 @@ int main(){
             }
         }
     }
-    if(aScore)
-    cout<<(aScore>bScore)<<endl;
+    if(aScore>1||aScore<-1){
+        if(aScore>1){
+            cout<<"A\n";
+        }
+        else{
+            cout<<"B\n";
+        }
+    }
 
 /*
     fstream fin("scores.txt", fstream::in);
