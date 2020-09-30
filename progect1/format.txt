@@ -1,0 +1,26 @@
+pg 1 cover page (centered)
+
+    Your Name
+    your initials
+    CS1350
+    program #
+    program name
+    due date:
+
+pg 2 copy of the code
+
+pg 3 algorithms (notes, planning, test plans) NOT code
+
+pg 4 reflection 
+    summary:
+        First, summarize the project, explaining what the problem that you solved was. 
+        Then include a paragraph explaining what you learned by writing this program. 
+        Items to include: how to plan, new c++ code/functions, debugging, etc.
+    
+    Challenges:
+        what went wrong? what was hard?
+
+    Lessions learned:
+        what did you learn during the project?
+
+

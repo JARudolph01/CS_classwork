@@ -1,0 +1,32 @@
+CS1350 Programming Project	 1					Fall 2020 
+Due October 14, 2020 Class Time					Mansfield, J
+
+Design, test, implement and test a C++ program that uses an array of integers when implementing both a Stack and a Queue ADT. Then use your linked list to implement these two data structures (Queue and Stack) with integers.
+
+You should plan this program well. You are creating an implementation of a stack – using both an array and a linked list. That is one program. Then you are creating an implementation of a queue, again using an array and a linked list.
+
+All stacks have the same properties and the same required functions. All queues have the same properties and the same required functions.
+
+Make sure to include all of your documentation for:  
+a) planning – algorithms 
+b) test and evaluation design – a plan to test each part of your program, along with the test data that will be used and how you will determine if test passed or failed 
+c) reflection – separate document, example available (25% of grade)
+
+Documentation – submit in appropriate location on BB:
+Turn in all required documentation:
+• Cover page
+	• Copy of assignment
+		• Design documents – including all diagrams, algorithms, testing information, etc.
+	• Reflection
+Code – submit in appropriate location on BB:
+•	One compressed folder:
+•	named yourinits.prog1 – use your initials.prog1
+•	all code and input/output files need to be in this folder
+•	all files need to have comments at the top:
+o	//your name
+o	//program name and portion of the program this file covers
+o	//due date of the program
+•	all files need to have appropriate names, I recommend xyz.stack.h; xyz.queue.h; xyz.stackImp.cpp etc.
+
+
+Due Date: 10/7/20
