@@ -4,16 +4,6 @@
 
 using namespace std;
 
-
-void reverse(string &s) {
-    int begin = 0;
-    int end = s.length();
-
-    while ((begin != end) && (begin != --end)){
-        swap(s[begin++], s[end]);
-    }
-}
-
 int main(){
 
     ifstream inFile("input.txt");
@@ -26,18 +16,17 @@ int main(){
     while (!inFile.eof()){
         getline(inFile,str);
 
-        rev=str;
-        reverse(rev);
+        //reverse str
+        rev = string(str.rbegin(), str.rend());
 
         if(rev==str){
             numOfPalindromes++;
             cout<<str<<endl;
         }
-
     }
     inFile.close();
 
-    cout<<numOfPalindromes<<endl;
+    cout<<"number of palindromes: "<<numOfPalindromes<<endl;
     
     return 0;
 }
