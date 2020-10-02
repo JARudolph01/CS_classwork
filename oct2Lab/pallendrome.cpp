@@ -12,6 +12,7 @@ int main(){
     string rev;
     int numOfPalindromes;
     numOfPalindromes=0;
+    string listOfPalindromes;
 
     while (!inFile.eof()){
         getline(inFile,str);
@@ -19,14 +20,15 @@ int main(){
         //reverse str
         rev = string(str.rbegin(), str.rend());
 
-        if(rev==str){
+        if(rev==str){//if str is a palindrome
             numOfPalindromes++;
-            cout<<str<<endl;
+            listOfPalindromes=listOfPalindromes+str+" ";
         }
     }
     inFile.close();
 
     cout<<"number of palindromes: "<<numOfPalindromes<<endl;
+    cout<<"list of palindromes: "<<listOfPalindromes<<endl;
     
     return 0;
 }
