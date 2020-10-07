@@ -4,16 +4,14 @@
 #include "node.h"
 class linkedList : protected node{
     public:
-        void addNum(int);
-        void removeNum(int);
-        void findNum(int);
+        void enqueue(int);
+        void dequeue();
         void printList();
         linkedList();
 
     private:
         node *head;
-        node *next;
-        node *current;
+        node *tail;
 };
 
 #endif

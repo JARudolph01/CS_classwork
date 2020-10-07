@@ -7,8 +7,19 @@ using namespace std;
 int main () 
 {
     linkedList list;
-    list.addNum(5);
-    list.addNum(6);
+    list.enqueue(5);
+    list.enqueue(6);
+    list.enqueue(7);
     list.printList();
+
+    list.dequeue();
+    list.printList();
+
+    list.dequeue();
+    list.printList();
+
+    list.dequeue();
+    list.printList();
+
     return 0; 
 } 
