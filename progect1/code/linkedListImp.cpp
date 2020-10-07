@@ -28,47 +28,6 @@ void linkedList::addNum(int num){
     
 }
 
-//Removes a number from the linked list.
-void linkedList::removeNum(int num){
-    current=head;
-    while(current->getNextPtr()!=NULL){ 
-        if(current->getNextPtr()->getData()==num){ //if the next node contains the number
-
-            //get the node after the one to be deleted
-            node* replacement=new node();
-            replacement=current->getNextPtr()->getNextPtr();
-
-            //mark the node for deletion.
-            node* markOfDeath;
-            markOfDeath=current->getNextPtr();
-
-            //point to the new next node
-            current->setNextPtr(replacement);
-
-            //free up the memory
-            delete(markOfDeath);
-
-            cout<<"removed "<<num<<" from linkedList\n";
-            return;
-        }
-        current=current -> getNextPtr();
-    }
-    cout<<"cannot delete node. "<<num<<" not in the linkedList. :(\n";
-}
-
-//Trys to find a number in the linked list.
-void linkedList::findNum(int num){
-    current = head;
-    while(current->getNextPtr()!=NULL){
-        if(current->getNextPtr()->getData()==num){
-            cout<<"yup, "<<num<<" is in the linkedList! ;)\n";
-            return;
-        }
-        current=current -> getNextPtr();
-    }
-    cout<<"sadly, "<<num<<" is not in the linkedList. :(\n";
-}
-
 //Prints out the data from the nodes.
 void linkedList::printList(){
     cout<<"LinkedList { ";
