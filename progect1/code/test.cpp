@@ -2,6 +2,7 @@
 #include "LinkedListStack.h"
 #include "linkedListQueue.h"
 #include "arrayStack.h"
+#include "arrayQueue.h"
 
 using namespace std;
 
@@ -41,6 +42,17 @@ int main ()
     arrStack.pop();
     arrStack.printList();
 
+    cout<<endl;
+
+    arrayQueue arrQueue;
+    arrQueue.enqueue(5);
+    arrQueue.enqueue(6);
+    arrQueue.enqueue(7);
+    arrQueue.printList();
+    arrQueue.dequeue();
+    arrQueue.printList();
+    arrQueue.dequeue();
+    arrQueue.printList();
 
     return 0; 
 } 

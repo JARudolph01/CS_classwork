@@ -1,5 +1,5 @@
-#ifndef ARRAY_STACK
-#define ARRAY_STACK
+#ifndef ARRAY_QUEUE
+#define ARRAY_QUEUE
 
 class arrayQueue{
     public:
@@ -9,7 +9,9 @@ class arrayQueue{
         arrayQueue();
 
     private:
-        int arr[];
+        int arr[20];
+        int front;
+        int rear;
 };
 
 #endif

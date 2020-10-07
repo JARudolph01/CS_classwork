@@ -7,8 +7,8 @@ void arrayStack::push(int num){
     bottom++;
 }
 
-
 void arrayStack::pop(){
+    arr[bottom]=0;
     bottom--;
 }
 
@@ -18,8 +18,6 @@ void arrayStack::printList(){
     }
     cout<<endl;
 }
-
-
 
 arrayStack::arrayStack(){
     bottom=-1;
