@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//Creates and adds nodes to the list
+//Creates and adds nodes to the queue
 void linkedList::enqueue(int num){
 
     //if list is empty
@@ -25,7 +25,7 @@ void linkedList::enqueue(int num){
     
 }
 
-//Prints out the data from the nodes.
+//removes the first item in the queue
 void linkedList::dequeue(){
     node* markODeath;
     markODeath=head;
@@ -33,6 +33,7 @@ void linkedList::dequeue(){
     delete(markODeath);
 }
 
+//Prints out the data from the nodes.
 void linkedList::printList(){
     node* current;
     current = head;
@@ -48,5 +49,4 @@ void linkedList::printList(){
 linkedList::linkedList(){
     head=NULL;
     tail=NULL;
-    
 }

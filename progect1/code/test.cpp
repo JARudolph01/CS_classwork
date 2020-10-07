@@ -1,5 +1,5 @@
 #include <iostream>
-#include "linkedList.h"
+#include "linkedListQueue.h"
 using namespace std;
 
 
@@ -18,8 +18,6 @@ int main ()
     list.dequeue();
     list.printList();
 
-    list.dequeue();
-    list.printList();
 
     return 0; 
 } 
