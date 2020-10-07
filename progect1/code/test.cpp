@@ -1,23 +1,35 @@
 #include <iostream>
+#include "LinkedListStack.h"
 #include "linkedListQueue.h"
+
 using namespace std;
 
 
 
 int main () 
 {
-    linkedList list;
-    list.enqueue(5);
-    list.enqueue(6);
-    list.enqueue(7);
-    list.printList();
 
-    list.dequeue();
-    list.printList();
+    
+    linkedListQueue linkQueue;
+    linkQueue.enqueue(5);
+    linkQueue.enqueue(6);
+    linkQueue.enqueue(7);
+    linkQueue.printList();
+    linkQueue.dequeue();
+    linkQueue.printList();
+    linkQueue.dequeue();
+    linkQueue.printList();
 
-    list.dequeue();
-    list.printList();
+    cout<<endl;
 
+    linkedList linkStack;
+    linkStack.push(7);
+    linkStack.push(8);
+    linkStack.push(9);
+    linkStack.printList();
+    linkStack.pop();
+    linkStack.printList();
+    
 
     return 0; 
 } 

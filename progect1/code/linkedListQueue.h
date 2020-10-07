@@ -1,13 +1,13 @@
-#ifndef LINKED_LIST
-#define LINKED_LIST
+#ifndef LINKED_LIST_QUEUE
+#define LINKED_LIST_QUEUE
 
 #include "node.h"
-class linkedList : protected node{
+class linkedListQueue : protected node{
     public:
         void enqueue(int);
         void dequeue();
         void printList();
-        linkedList();
+        linkedListQueue();
 
     private:
         node *head;
