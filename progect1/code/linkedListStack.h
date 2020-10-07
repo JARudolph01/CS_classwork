@@ -2,12 +2,12 @@
 #define LINKED_LIST_STACK
 
 #include "node.h"
-class linkedList : protected node{
+class linkedListStack : protected node{
     public:
         void push(int);
         void pop();
         void printList();
-        linkedList();
+        linkedListStack();
 
     private:
         node *head;

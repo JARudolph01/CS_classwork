@@ -3,7 +3,7 @@
 using namespace std;
 
 //Creates and adds nodes to the queue
-void linkedList::push(int num){
+void linkedListStack::push(int num){
 
     //if list is empty
     if(head == NULL){
@@ -24,7 +24,7 @@ void linkedList::push(int num){
 }
 
 //removes the first item in the queue
-void linkedList::pop(){
+void linkedListStack::pop(){
     node* markODeath;
     markODeath=head;
     head=head->getNextPtr();
@@ -32,7 +32,7 @@ void linkedList::pop(){
 }
 
 //Prints out the data from the nodes.
-void linkedList::printList(){
+void linkedListStack::printList(){
     node* current;
     current = head;
     while(current->getNextPtr()!=NULL){
@@ -44,6 +44,6 @@ void linkedList::printList(){
 }
 
 //Constructor.
-linkedList::linkedList(){
+linkedListStack::linkedListStack(){
     head=NULL;
 }
