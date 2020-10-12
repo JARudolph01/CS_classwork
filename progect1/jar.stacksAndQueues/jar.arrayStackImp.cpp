@@ -1,5 +1,5 @@
 #include <iostream>
-#include "arrayStack.h"
+#include "jar.arrayStack.h"
 using namespace std;
 
 void arrayStack::push(int num){

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "linkedListStack.h"
-#include "linkedListQueue.h"
-#include "arrayStack.h"
-#include "arrayQueue.h"
+#include "jar.linkedListStack.h"
+#include "jar.linkedListQueue.h"
+#include "jar.arrayStack.h"
+#include "jar.arrayQueue.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef LINKED_LIST_STACK
 #define LINKED_LIST_STACK
 
-#include "node.h"
+#include "jar.node.h"
 class linkedListStack : protected node{
     public:
         void push(int);
