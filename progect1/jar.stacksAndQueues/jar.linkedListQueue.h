@@ -14,8 +14,8 @@ class linkedListQueue : protected node{
         linkedListQueue();
 
     private:
-        node *head;
-        node *tail;
+        node *front;
+        node *rear;
 };
 
 #endif

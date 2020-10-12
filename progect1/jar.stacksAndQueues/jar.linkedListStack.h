@@ -14,7 +14,7 @@ class linkedListStack : protected node{
         linkedListStack();
 
     private:
-        node *head;
+        node *top;
 };
 
 #endif

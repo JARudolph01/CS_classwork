@@ -10,20 +10,20 @@ using namespace std;
 void linkedListQueue::enqueue(int num){
 
     //if list is empty
-    if(head == NULL){
+    if(front == NULL){
         node* newNode = new node();
-        head=newNode;
-        head->setData(num);
-        head->setNextPtr(NULL);
-        tail = head;
+        front=newNode;
+        front->setData(num);
+        front->setNextPtr(NULL);
+        rear = front;
     }
     else{
         //add the new node
         node* newNode = new node();
-        tail->setNextPtr(newNode);
-        tail=newNode;
-        tail->setData(num);
-        tail->setNextPtr(NULL);
+        rear->setNextPtr(newNode);
+        rear=newNode;
+        rear->setData(num);
+        rear->setNextPtr(NULL);
     }
     
     
@@ -32,15 +32,15 @@ void linkedListQueue::enqueue(int num){
 //removes the first item in the queue
 void linkedListQueue::dequeue(){
     node* markODeath;
-    markODeath=head;
-    head=head->getNextPtr();
+    markODeath=front;
+    front=front->getNextPtr();
     delete(markODeath);
 }
 
 //Prints out the data from the nodes.
 void linkedListQueue::printList(){
     node* current;
-    current = head;
+    current = front;
     while(current->getNextPtr()!=NULL){
         cout<<current->getData()<<" ";
         current=current -> getNextPtr();
@@ -51,6 +51,6 @@ void linkedListQueue::printList(){
 
 //Constructor.
 linkedListQueue::linkedListQueue(){
-    head=NULL;
-    tail=NULL;
+    front=NULL;
+    rear=NULL;
 }

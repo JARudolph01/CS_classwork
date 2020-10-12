@@ -10,18 +10,18 @@ using namespace std;
 void linkedListStack::push(int num){
 
     //if list is empty
-    if(head == NULL){
+    if(top == NULL){
         node* newNode = new node();
-        head=newNode;
-        head->setData(num);
-        head->setNextPtr(NULL);
+        top=newNode;
+        top->setData(num);
+        top->setNextPtr(NULL);
     }
     else{
         //add the new node
         node* newNode = new node();
-        newNode->setNextPtr(head);
+        newNode->setNextPtr(top);
         newNode->setData(num);
-        head=newNode;
+        top=newNode;
     }
     
     
@@ -30,15 +30,15 @@ void linkedListStack::push(int num){
 //removes the first item in the queue
 void linkedListStack::pop(){
     node* markODeath;
-    markODeath=head;
-    head=head->getNextPtr();
+    markODeath=top;
+    top=top->getNextPtr();
     delete(markODeath);
 }
 
 //Prints out the data from the nodes.
 void linkedListStack::printList(){
     node* current;
-    current = head;
+    current = top;
     while(current->getNextPtr()!=NULL){
         cout<<current->getData()<<" ";
         current=current -> getNextPtr();
@@ -49,5 +49,5 @@ void linkedListStack::printList(){
 
 //Constructor.
 linkedListStack::linkedListStack(){
-    head=NULL;
+    top=NULL;
 }
