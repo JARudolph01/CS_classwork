@@ -1,3 +1,7 @@
+//John Rudolph
+//jar.stacksAndQueues array stack implementation
+//due 10/14
+
 #include <iostream>
 #include "jar.arrayStack.h"
 using namespace std;

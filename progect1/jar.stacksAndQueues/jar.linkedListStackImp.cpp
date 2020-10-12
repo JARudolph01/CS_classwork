@@ -1,3 +1,7 @@
+//John Rudolph
+//jar.stacksAndQueues linkList stack implementation
+//due 10/14
+
 #include "jar.linkedListStack.h"
 #include <iostream>
 using namespace std;

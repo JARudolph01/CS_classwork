@@ -1,3 +1,7 @@
+//John Rudolph
+//jar.stacksAndQueues linkList queue header
+//due 10/14
+
 #ifndef LINKED_LIST_QUEUE
 #define LINKED_LIST_QUEUE
 

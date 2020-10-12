@@ -1,3 +1,7 @@
+//John Rudolph
+//jar.stacksAndQueues node implementation
+//due 10/14
+
 #include "jar.node.h"
 #include <iostream>
 using namespace std;

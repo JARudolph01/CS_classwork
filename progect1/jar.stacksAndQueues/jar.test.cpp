@@ -1,3 +1,7 @@
+//John Rudolph
+//jar.stacksAndQueues test file
+//due 10/14
+
 #include <iostream>
 #include "jar.linkedListStack.h"
 #include "jar.linkedListQueue.h"

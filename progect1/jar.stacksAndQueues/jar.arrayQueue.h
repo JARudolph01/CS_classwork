@@ -1,3 +1,8 @@
+//John Rudolph
+//jar.stacksAndQueues array queue header
+//due 10/14
+
+
 #ifndef ARRAY_QUEUE
 #define ARRAY_QUEUE
 
