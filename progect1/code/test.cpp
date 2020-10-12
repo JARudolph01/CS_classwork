@@ -1,5 +1,5 @@
 #include <iostream>
-#include "LinkedListStack.h"
+#include "linkedListStack.h"
 #include "linkedListQueue.h"
 #include "arrayStack.h"
 #include "arrayQueue.h"
