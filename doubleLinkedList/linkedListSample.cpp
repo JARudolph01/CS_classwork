@@ -1,16 +1,16 @@
 #include <iostream>
 #include <cstdlib>
 
-
+using namespace std;
 
 class Node
 {
 public:
     Node* next;
+    Node* previous;
     int data;
 };
 
-using namespace std;
 
 class LinkedList
 {
@@ -35,19 +35,34 @@ LinkedList::~LinkedList(){
 
 void LinkedList::add(int data){
     Node* node = new Node();
+    if(this->head != NULL){
+    this->head->previous = node;
+    }
     node->data = data;
     node->next = this->head;
     this->head = node;
     this->length++;
+
 }
 
 void LinkedList::print(){
-    Node* head = this->head;
+    Node* current = this->head;
+
     int i = 1;
-    while(head){
-        std::cout << i << ": " << head->data << std::endl;
-        head = head->next;
+    while(current->next){
+        std::cout << i << ": " << current->data << std::endl;
+        current = current->next;
         i++;
+    }
+    std::cout << i << ": " << current->data << std::endl;
+
+    cout<<"reverse reverse!\n";
+
+
+    while(current){
+        std::cout << i << ": " << current->data << std::endl;
+        current = current->previous;
+        i--;
     }
 }
 int main()
@@ -55,7 +70,7 @@ int main()
     LinkedList* list = new LinkedList();
     for (int i = 0; i < 100; ++i)
     {
-        list->add(rand() % 100);
+        list->add(i);
     }
     list->print();
     std::cout << "List Length: " << list->length << std::endl;
