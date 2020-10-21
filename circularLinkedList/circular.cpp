@@ -33,27 +33,31 @@ LinkedList::~LinkedList(){
 
 void LinkedList::add(int data){
     Node* node = new Node();
-    if(head){
-        this->front->next=node;
+    node->data=data;
+
+
+    if(!this->head){
+        this->front=node;
+        this->head=node;
     }
     else{
-        node->data = data;
-        node->next = this->front;
-        this->front = node;
-        this->head->next=front;
+        this->front->next=node;
     }
+
+    node->next=this->head;
+    this->head=node;
     this->length++;
 }
 
 void LinkedList::print(){
-    Node* current = this->head;
-    cout<<current->data<<endl;
+    Node* current = this->front->next;
     int i = 1;
-    while(current!=head){
+    while(current!=front){
         std::cout << i << ": " << current->data << std::endl;
         current = current->next;
         i++;
     }
+    std::cout << i << ": " << current->data << std::endl;
 }
 int main()
 {
