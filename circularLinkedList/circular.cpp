@@ -6,6 +6,7 @@ class Node
 public:
     Node* next;
     int data;
+    int priority;
 };
 
 class LinkedList
@@ -34,8 +35,7 @@ LinkedList::~LinkedList(){
 void LinkedList::add(int data){
     Node* node = new Node();
     node->data=data;
-
-
+    node->priority=0;
     if(!this->head){
         this->front=node;
         this->head=node;
@@ -43,7 +43,6 @@ void LinkedList::add(int data){
     else{
         this->front->next=node;
     }
-
     node->next=this->head;
     this->head=node;
     this->length++;
