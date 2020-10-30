@@ -76,13 +76,13 @@ int main()
     for (int i = 0; i < 100; ++i)
     {
         //list->add(i);
-        list->add(((i*i)-i));
+        list->add((i*i)%(8765));
     }
     list->print();
     std::cout << "List Length: " << list->length << std::endl;
 
     insertionSort(list, list->length);
-list->print();
+    list->print();
 
     delete list;
 
@@ -103,30 +103,9 @@ void insertionSort(LinkedList* list, int length)
             do{
                 location->data=location->previous->data;
                 location=location->previous;
-            }while(location!=list->head && firstOutOfOrder->previous->data>temp);
+            }while(location!=list->head && location->previous->data>temp);
             location->data=temp;
-
-            firstOutOfOrder=firstOutOfOrder->next;
         }
-        
+        firstOutOfOrder=firstOutOfOrder->next;
     }
-    /*
-    for (int firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
-        if (list[firstOutOfOrder] < list[firstOutOfOrder - 1])
-        {
-            elemType temp = list[firstOutOfOrder];
-            int location = firstOutOfOrder;
-
-            do
-            {
-                list[location] = list[location - 1];
-                location--;
-            } while(location > 0 && list[location - 1] > temp);
-
-            list[location] = temp;
-        }
-
-        */
-
-        
-} //end insertionSort
+}
