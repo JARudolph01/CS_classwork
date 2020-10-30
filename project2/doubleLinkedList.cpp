@@ -63,7 +63,7 @@ int main()
     for (int i = 0; i < 100; i++)
     {
         //list->add(i);
-        list->add((i*i)%(765));
+        list->add((i*i)%(89));
     }
     list->print();
     std::cout << "List Length: " << list->length << std::endl;
@@ -87,15 +87,20 @@ void insertionSort(LinkedList* list, int length)
     while(firstOutOfOrder){
 
         if(firstOutOfOrder->data<firstOutOfOrder->previous->data){
+            comparisons++;
             int temp=firstOutOfOrder->data;
             Node* location=firstOutOfOrder;
 
             do{
+                comparisons++;
+                dataMoves+=2;
                 location->data=location->previous->data;
                 location=location->previous;
             }while(location!=list->head && location->previous->data>temp);
             location->data=temp;
         }
         firstOutOfOrder=firstOutOfOrder->next;
+        dataMoves++;
     }
+    cout<<"comparisons: "<<comparisons<<" data moves: "<<dataMoves<<"\n";
 }
