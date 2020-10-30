@@ -100,8 +100,7 @@ int minLocation(elemType list[], int first, int last)
 template <class elemType>
 void insertionSort(elemType list[], int length)
 {
-    for (int firstOutOfOrder = 1; firstOutOfOrder < length;
-                                  firstOutOfOrder++)
+    for (int firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
         if (list[firstOutOfOrder] < list[firstOutOfOrder - 1])
         {
             elemType temp = list[firstOutOfOrder];
