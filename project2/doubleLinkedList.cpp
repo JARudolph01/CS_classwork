@@ -42,7 +42,6 @@ void LinkedList::add(int data){
     node->next = this->head;
     this->head = node;
     this->length++;
-
 }
 
 void LinkedList::print(){
@@ -55,28 +54,16 @@ void LinkedList::print(){
         current = current->next;
         i++;
     }
-    //std::cout << i << ": " << current->data << std::endl;
     cout<<current->data<<"\n";
-
-
-    //cout<<"reverse reverse!\n";
-
-    /*
-    while(current){
-        std::cout << i << ": " << current->data << std::endl;
-        current = current->previous;
-        i--;
-    }
-    */
 }
 void insertionSort(LinkedList* list, int length);
 int main()
 {
     LinkedList* list = new LinkedList();
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 100; i++)
     {
         //list->add(i);
-        list->add((i*i)%(8765));
+        list->add((i*i)%(765));
     }
     list->print();
     std::cout << "List Length: " << list->length << std::endl;
@@ -93,9 +80,12 @@ int main()
 
 void insertionSort(LinkedList* list, int length)
 {
+    int comparisons=0;
+    int dataMoves=0;
     Node* firstOutOfOrder = list->head->next;
 
     while(firstOutOfOrder){
+
         if(firstOutOfOrder->data<firstOutOfOrder->previous->data){
             int temp=firstOutOfOrder->data;
             Node* location=firstOutOfOrder;
