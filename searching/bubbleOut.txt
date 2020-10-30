@@ -1,0 +1,1 @@
+comparisons: 19900 data moves: 29946
