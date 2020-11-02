@@ -53,9 +53,9 @@ void LinkedList::print(){
     cout<<current->data<<"\n";
 }
 
-void quickSort(int list[], int length);
-int partition(int list[], int first, int last);
-void recQuickSort(int list[], int first, int last);
+void quickSort(LinkedList* list, int length);
+int partition(LinkedList* list, int first, int last);
+void recQuickSort(LinkedList* list, int first, int last);
 void swap(LinkedList* list, int first, int second);
 Node* indexTranslate(LinkedList* list, int index);
 
@@ -107,13 +107,15 @@ void swap(LinkedList* list, int first, int second)
     
 } //end swap
 
-void quickSort(int list[], int length)
+
+/*
+void quickSort(LinkedList* list, int length)
 {
-    recQuickSort(list, 0, length - 1);
+    recQuickSort(LinkedList* list, 0, length - 1);
 } //end quickSort
 
 
-void recQuickSort(int list[], int first, int last)
+void recQuickSort(LinkedList* list, int first, int last)
 {
     int pivotLocation;
 
@@ -125,7 +127,7 @@ void recQuickSort(int list[], int first, int last)
     }
 } //end recQuickSort
 
-int partition(int list[], int first, int last)
+int partition(LinkedList* list, int first, int last)
 {
     int pivot;
 
@@ -147,3 +149,4 @@ int partition(int list[], int first, int last)
 
     return smallIndex;
 } //end partition
+*/
