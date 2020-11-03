@@ -65,7 +65,7 @@ Node* indexTranslate(LinkedList* list, int index);
 int main()
 {
     LinkedList* list = new LinkedList();
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 34; i++)
     {
         //list->add(i);
         list->add((i*i)%(89));
@@ -95,74 +95,44 @@ Node* indexTranslate(LinkedList* list, int index){
 
 void swap(LinkedList* ll, int first, int second)
 {
-    if(first==0||second==0)
-    {
-        if(first==0)
-        {
-            Node* tempSecond = indexTranslate(ll, second);
-            Node* tempPreSecond = indexTranslate(ll, second-1);
-            Node* tempPreFirst = ll->head->next;
-            ll->head->next=(indexTranslate(ll, second+1));
-            tempPreSecond->next=(ll->head);
-            ll->head = tempSecond;
-            tempSecond->next=(tempPreFirst);
-        }
-        else if(second == 0)
-        {
-            Node* tempFirst = indexTranslate(ll, first);
-            Node* tempPreFirst = indexTranslate(ll, first-1);
-            Node* tempPreSecond = ll->head->next;
-            ll->head->next=(indexTranslate(ll, first+1));
-            tempPreFirst->next=(ll->head);
-            ll->head = tempFirst;
-            tempFirst->next=(tempPreSecond);
-        }
+    if(first==second){
+        return;
     }
-    else if(first-second==1||second-first==1)
+
+    if(first>second){
+        int temp=first;
+        first=second;
+        second=temp;
+    }
+
+    if(first==0)
     {
-        if(first>second)
-        {
-            Node* tempFirst = indexTranslate(ll, first);
-            Node* tempPostFirst = indexTranslate(ll, first + 1);
-            tempFirst->next=(indexTranslate(ll, second));
-            indexTranslate(ll, second)->next=(tempPostFirst);
-            indexTranslate(ll, second - 1)->next=(tempFirst);
-        }
-        else if(second>first)
-        {
-            Node* tempSecond = indexTranslate(ll, second);
-            Node* tempPostSecond = indexTranslate(ll, second + 1);
-            tempSecond->next=(indexTranslate(ll, first));
-            indexTranslate(ll, first)->next=(tempPostSecond);
-            indexTranslate(ll, first - 1)->next=(tempSecond);
-        }
+        Node* tempSecond = indexTranslate(ll, second);
+        Node* tempPreSecond = indexTranslate(ll, second-1);
+        Node* tempPreFirst = ll->head->next;
+        ll->head->next=(indexTranslate(ll, second+1));
+        tempPreSecond->next=(ll->head);
+        ll->head = tempSecond;
+        tempSecond->next=(tempPreFirst);
+    }
+    else if(second-first==1)
+    {
+        Node* tempSecond = indexTranslate(ll, second);
+        Node* tempPostSecond = indexTranslate(ll, second + 1);
+        tempSecond->next=(indexTranslate(ll, first));
+        indexTranslate(ll, first)->next=(tempPostSecond);
+        indexTranslate(ll, first - 1)->next=(tempSecond);
     }
     else
     {
-        if(first>second)
-        {
-            Node* tempFirst = indexTranslate(ll, first);
-            Node* tempPreFirst = indexTranslate(ll, first-1);
-            Node* tempPostFirst = indexTranslate(ll, first+1);
-            indexTranslate(ll, first)->next=(indexTranslate(ll, second + 1));
-            indexTranslate(ll, first-1)->next=(indexTranslate(ll, second));
-            indexTranslate(ll, second)->next=(tempPostFirst);
-            indexTranslate(ll, second-1)->next=(tempFirst);
-        }
-        else if(second>first)
-        {
-            Node* tempSecond = indexTranslate(ll, second);
-            Node* tempPreSecond = indexTranslate(ll, second-1);
-            Node* tempPostSecond = indexTranslate(ll, second+1);
-            indexTranslate(ll, second)->next=(indexTranslate(ll, first + 1));
-            indexTranslate(ll, second-1)->next=(indexTranslate(ll, first));
-            indexTranslate(ll, first)->next=(tempPostSecond);
-            indexTranslate(ll, first-1)->next=(tempSecond);
-        }
+        Node* tempSecond = indexTranslate(ll, second);
+        Node* tempPreSecond = indexTranslate(ll, second-1);
+        Node* tempPostSecond = indexTranslate(ll, second+1);
+        indexTranslate(ll, second)->next=(indexTranslate(ll, first + 1));
+        indexTranslate(ll, second-1)->next=(indexTranslate(ll, first));
+        indexTranslate(ll, first)->next=(tempPostSecond);
+        indexTranslate(ll, first-1)->next=(tempSecond);
     }
-    
-    
-
 }
 
 
