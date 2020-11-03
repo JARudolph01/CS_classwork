@@ -206,3 +206,23 @@ int partition(LinkedList* list, int first, int last)
 
     return smallIndex;
 } //end partition
+
+
+
+void insertionSort(LinkedList* list, int length)
+{
+    for (int firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
+        if (indexTranslate(list, firstOutOfOrder)->data < indexTranslate(list, firstOutOfOrder-1)->data)
+        {
+            Node* temp = indexTranslate(list, firstOutOfOrder);
+            int location = firstOutOfOrder;
+
+            do
+            {
+                indexTranslate(list, firstOutOfOrder)->data = indexTranslate(list, firstOutOfOrder-1)->data;
+                location--;
+            } while(location > 0 && indexTranslate(list, firstOutOfOrder-1)->data > temp->data);
+
+            indexTranslate(list, firstOutOfOrder) = temp;  
+        }
+} //end insertionSort
