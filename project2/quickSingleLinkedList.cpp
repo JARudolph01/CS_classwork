@@ -33,7 +33,7 @@ LinkedList::~LinkedList(){
 
 void LinkedList::add(int data){
     Node* node = new Node();
-
+    
     node->data = data;
     node->next = this->head;
     this->head = node;
@@ -54,6 +54,7 @@ void LinkedList::print(){
 }
 
 void quickSort(LinkedList* list, int length);
+void insertionSort(LinkedList* list, int length);
 int partition(LinkedList* list, int first, int last);
 void recQuickSort(LinkedList* list, int first, int last);
 void swap(LinkedList* list, int first, int second);
@@ -64,6 +65,7 @@ Node* indexTranslate(LinkedList* list, int index);
 
 int main()
 {
+    
     LinkedList* list = new LinkedList();
     for (int i = 0; i < 34; i++)
     {
@@ -75,8 +77,10 @@ int main()
 
     //swap(list, 9,0);
     //list->print();
+    //quickSort(list, list->length);
     quickSort(list, list->length);
     list->print();
+
 
     delete list;
 
@@ -91,7 +95,6 @@ Node* indexTranslate(LinkedList* list, int index){
     }
     return current;
 }
-
 
 void swap(LinkedList* ll, int first, int second)
 {
@@ -135,12 +138,10 @@ void swap(LinkedList* ll, int first, int second)
     }
 }
 
-
 void quickSort(LinkedList* list, int length)
 {
     recQuickSort(list, 0, length - 1);
 }
-
 
 void recQuickSort(LinkedList* list, int first, int last)
 {
@@ -187,12 +188,14 @@ void insertionSort(LinkedList* list, int length)
             Node* temp = indexTranslate(list, firstOutOfOrder);
             int location = firstOutOfOrder;
 
-            do
-            {
-                indexTranslate(list, firstOutOfOrder)->data = indexTranslate(list, firstOutOfOrder-1)->data;
+            location--;
+            while(location > 0 && indexTranslate(list, location-1)->data > temp->data){
                 location--;
-            } while(location > 0 && indexTranslate(list, firstOutOfOrder-1)->data > temp->data);
+            }
+            
 
-            indexTranslate(list, firstOutOfOrder) = temp;  
+            indexTranslate(list, firstOutOfOrder-1)->next = indexTranslate(list, firstOutOfOrder+1);
+            temp->next = indexTranslate(list, location)->next;
+            indexTranslate(list, location)->next=temp;
         }
 } //end insertionSort

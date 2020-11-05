@@ -3,6 +3,7 @@
         "iosfwd": "cpp",
         "iostream": "cpp",
         "iterator": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "xutility": "cpp"
     }
 }
