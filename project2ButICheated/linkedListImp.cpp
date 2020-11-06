@@ -1,3 +1,7 @@
+/*  John Rudolph
+    Sorting linked list implementation
+    11/6/2020
+*/
 #include <iostream>
 #include "node.h"
 #include "linkedList.h"

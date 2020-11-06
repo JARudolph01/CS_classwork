@@ -1,3 +1,7 @@
+/*  John Rudolph
+    Sorting Use file
+    11/6/2020
+*/
 #include <iostream>
 #include "node.h"
 #include "linkedList.h"
@@ -18,7 +22,6 @@ void insertionSortStolen(struct Node **head_ref);
 
 int main()
 {
-    
     LinkedList* list = new LinkedList();
     for (int i = 0; i < 34; i++)
     {
@@ -50,8 +53,7 @@ Node* indexTranslate(LinkedList* list, int index){
     return current;
 }
 
-void swap(LinkedList* ll, int first, int second)
-{
+void swap(LinkedList* ll, int first, int second){
     if(first==second){
         return;
     }
@@ -132,35 +134,8 @@ int partition(LinkedList* list, int first, int last)
     return smallIndex;
 } //end partition
 
-
-/*
-void insertionSort(LinkedList* list, int length)
-{
-    for (int firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
-        if (indexTranslate(list, firstOutOfOrder)->data < indexTranslate(list, firstOutOfOrder-1)->data)
-        {
-            Node* temp = indexTranslate(list, firstOutOfOrder);
-            int location = firstOutOfOrder;
-
-            location--;
-            while(location > 0 && indexTranslate(list, location-1)->data > temp->data){
-                location--;
-            }
-            
-
-            indexTranslate(list, firstOutOfOrder-1)->next = indexTranslate(list, firstOutOfOrder+1);
-            temp->next = indexTranslate(list, location)->next;
-            indexTranslate(list, location)->next=temp;
-        }
-} //end insertionSort
-
-*/
-
-
-
-
 void sortedInsertStolen(struct Node**, struct Node*); 
-  
+
 // function to sort a singly linked list using insertion sort 
 void insertionSortStolen(struct Node **head_ref) 
 { 
@@ -185,13 +160,10 @@ void insertionSortStolen(struct Node **head_ref)
     // Update head_ref to point to sorted linked list 
     *head_ref = sorted; 
 } 
-  
-/* function to insert a new_node in a list. Note that this 
-  function expects a pointer to head_ref as this can modify the 
-  head of the input linked list (similar to push())*/
-void sortedInsertStolen(struct Node** head_ref, struct Node* new_node) 
+
+void sortedInsertStolen(Node** head_ref, Node* new_node) 
 { 
-    struct Node* current; 
+    Node* current; 
     /* Special case for the head end */
     if (*head_ref == NULL || (*head_ref)->data >= new_node->data) 
     { 

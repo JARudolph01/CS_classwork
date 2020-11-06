@@ -1,3 +1,7 @@
+/*  John Rudolph
+    Sorting linked list header
+    11/6/2020
+*/
 #ifndef LINKEDLIST
 #define LINKEDLIST
 #include "node.h"
