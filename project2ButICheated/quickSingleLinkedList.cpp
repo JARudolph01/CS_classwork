@@ -133,7 +133,7 @@ int partition(LinkedList* list, int first, int last)
 } //end partition
 
 
-
+/*
 void insertionSort(LinkedList* list, int length)
 {
     for (int firstOutOfOrder = 1; firstOutOfOrder < length; firstOutOfOrder++)
@@ -154,7 +154,7 @@ void insertionSort(LinkedList* list, int length)
         }
 } //end insertionSort
 
-
+*/
 
 
 
