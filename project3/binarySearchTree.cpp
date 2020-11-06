@@ -10,7 +10,6 @@ public:
     int data;
 };
 
-
 Node* insertNode(Node* root, int key)
 {
 	// if the root is null, create a new node and return it
@@ -35,8 +34,10 @@ Node* insertNode(Node* root, int key)
 
 void inorder(Node* root)
 {
-	if (root == nullptr)
-		return;
+	if (root == nullptr){
+        return;
+    }
+		
 
 	inorder(root->left);
 	cout << root->data << " ";
