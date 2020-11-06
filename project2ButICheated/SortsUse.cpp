@@ -1,13 +1,15 @@
 /*  John Rudolph
     Sorting Use file
-    11/6/2020
+    11/8/2020
 */
 #include <iostream>
 #include "node.h"
 #include "linkedList.h"
+#include <fstream>
+
+
+
 using namespace std;
-
-
 
 void quickSort(LinkedList* list, int length);
 void insertionSort(LinkedList* list, int length);
@@ -18,12 +20,18 @@ Node* indexTranslate(LinkedList* list, int index);
 
 void insertionSortStolen(struct Node **head_ref);
 
-
+int comparisons = 0;
+int dataMoves = 0;
 
 int main()
 {
+    ofstream outfile;
+    outfile.open("output.txt");
+
+
+
     LinkedList* list = new LinkedList();
-    for (int i = 0; i < 34; i++)
+    for (int i = 0; i < 30; i++)
     {
         //list->add(i);
         list->add((i*i)%(89));
@@ -33,11 +41,16 @@ int main()
 
     //swap(list, 9,0);
     //list->print();
-    //quickSort(list, list->length);
+    quickSort(list, list->length);
     //insertionSort(list, list->length);
-    insertionSortStolen(&list->head);
+    //insertionSortStolen(&list->head);
     list->print();
+    cout<<comparisons<<"\n";
+    outfile<<comparisons<<"\n";
+    cout<<dataMoves;
+    outfile<<dataMoves<<"\n";
 
+    outfile.close();
 
     delete list;
 
@@ -73,6 +86,7 @@ void swap(LinkedList* ll, int first, int second){
         tempPreSecond->next=(ll->head);
         ll->head = tempSecond;
         tempSecond->next=(tempPreFirst);
+        dataMoves+=4;
     }
     else if(second-first==1)
     {
@@ -81,6 +95,7 @@ void swap(LinkedList* ll, int first, int second){
         tempSecond->next=(indexTranslate(ll, first));
         indexTranslate(ll, first)->next=(tempPostSecond);
         indexTranslate(ll, first - 1)->next=(tempSecond);
+        dataMoves+=3;
     }
     else
     {
@@ -91,7 +106,9 @@ void swap(LinkedList* ll, int first, int second){
         indexTranslate(ll, second-1)->next=(indexTranslate(ll, first));
         indexTranslate(ll, first)->next=(tempPostSecond);
         indexTranslate(ll, first-1)->next=(tempSecond);
+        dataMoves+=4;
     }
+    comparisons++;
 }
 
 void quickSort(LinkedList* list, int length)
@@ -109,6 +126,7 @@ void recQuickSort(LinkedList* list, int first, int last)
         recQuickSort(list, first, pivotLocation - 1);
         recQuickSort(list, pivotLocation + 1, last);
     }
+    comparisons++;
 } //end recQuickSort
 
 int partition(LinkedList* list, int first, int last)
@@ -128,6 +146,7 @@ int partition(LinkedList* list, int first, int last)
             smallIndex++;
             swap(list, smallIndex, index);
         }
+        comparisons++;
 
     swap(list, first, smallIndex);
 
@@ -168,7 +187,9 @@ void sortedInsertStolen(Node** head_ref, Node* new_node)
     if (*head_ref == NULL || (*head_ref)->data >= new_node->data) 
     { 
         new_node->next = *head_ref; 
+        dataMoves++;
         *head_ref = new_node; 
+        dataMoves++;
     } 
     else
     { 
@@ -177,8 +198,11 @@ void sortedInsertStolen(Node** head_ref, Node* new_node)
         while (current->next!=NULL && current->next->data < new_node->data) 
         { 
             current = current->next; 
+            comparisons++;
         } 
         new_node->next = current->next; 
         current->next = new_node; 
+        dataMoves+=2;
     } 
+    comparisons++;
 } 

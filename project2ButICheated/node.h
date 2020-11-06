@@ -1,6 +1,6 @@
 /*  John Rudolph
     Sorting node header
-    11/6/2020
+    11/8/2020
 */
 #ifndef NODE
 #define NODE

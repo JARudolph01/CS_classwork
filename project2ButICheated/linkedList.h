@@ -1,6 +1,6 @@
 /*  John Rudolph
     Sorting linked list header
-    11/6/2020
+    11/8/2020
 */
 #ifndef LINKEDLIST
 #define LINKEDLIST
