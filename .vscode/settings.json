@@ -4,6 +4,13 @@
         "iostream": "cpp",
         "iterator": "cpp",
         "utility": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "deque": "cpp",
+        "functional": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp"
     }
 }
