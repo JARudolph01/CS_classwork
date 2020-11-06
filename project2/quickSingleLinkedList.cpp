@@ -60,6 +60,7 @@ void recQuickSort(LinkedList* list, int first, int last);
 void swap(LinkedList* list, int first, int second);
 Node* indexTranslate(LinkedList* list, int index);
 
+void insertionSortStolen(struct Node **head_ref);
 
 
 
@@ -78,7 +79,8 @@ int main()
     //swap(list, 9,0);
     //list->print();
     //quickSort(list, list->length);
-    quickSort(list, list->length);
+    //insertionSort(list, list->length);
+    insertionSortStolen(&list->head);
     list->print();
 
 
@@ -199,3 +201,60 @@ void insertionSort(LinkedList* list, int length)
             indexTranslate(list, location)->next=temp;
         }
 } //end insertionSort
+
+
+
+
+
+
+void sortedInsertStolen(struct Node**, struct Node*); 
+  
+// function to sort a singly linked list using insertion sort 
+void insertionSortStolen(struct Node **head_ref) 
+{ 
+    // Initialize sorted linked list 
+    struct Node *sorted = NULL; 
+  
+    // Traverse the given linked list and insert every 
+    // node to sorted 
+    struct Node *current = *head_ref; 
+    while (current != NULL) 
+    { 
+        // Store next for next iteration 
+        struct Node *next = current->next; 
+  
+        // insert current in sorted linked list 
+        sortedInsertStolen(&sorted, current); 
+  
+        // Update current 
+        current = next; 
+    } 
+  
+    // Update head_ref to point to sorted linked list 
+    *head_ref = sorted; 
+} 
+  
+/* function to insert a new_node in a list. Note that this 
+  function expects a pointer to head_ref as this can modify the 
+  head of the input linked list (similar to push())*/
+void sortedInsertStolen(struct Node** head_ref, struct Node* new_node) 
+{ 
+    struct Node* current; 
+    /* Special case for the head end */
+    if (*head_ref == NULL || (*head_ref)->data >= new_node->data) 
+    { 
+        new_node->next = *head_ref; 
+        *head_ref = new_node; 
+    } 
+    else
+    { 
+        /* Locate the node before the point of insertion */
+        current = *head_ref; 
+        while (current->next!=NULL && current->next->data < new_node->data) 
+        { 
+            current = current->next; 
+        } 
+        new_node->next = current->next; 
+        current->next = new_node; 
+    } 
+} 
