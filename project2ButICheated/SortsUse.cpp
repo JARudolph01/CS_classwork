@@ -12,7 +12,6 @@
 using namespace std;
 
 void quickSort(LinkedList* list, int length);
-void insertionSort(LinkedList* list, int length);
 int partition(LinkedList* list, int first, int last);
 void recQuickSort(LinkedList* list, int first, int last);
 void swap(LinkedList* list, int first, int second);
@@ -28,21 +27,30 @@ int main()
     ofstream outfile;
     outfile.open("output.txt");
 
+    ifstream inFile;
+    inFile.open("ints.txt");
+
+
 
 
     LinkedList* list = new LinkedList();
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 40; i++)
     {
-        //list->add(i);
-        list->add((i*i)%(89));
+        int temp;
+        inFile>>temp;
+        list->add(temp);
+        //cout<<temp<<" ";
+        
     }
     list->print();
+    cout<<"\nend of file yay\n";
+
+    inFile.close();
     //std::cout << "List Length: " << list->length << std::endl;
 
     //swap(list, 9,0);
     //list->print();
     quickSort(list, list->length);
-    //insertionSort(list, list->length);
     //insertionSortStolen(&list->head);
     list->print();
     cout<<comparisons<<"\n";
