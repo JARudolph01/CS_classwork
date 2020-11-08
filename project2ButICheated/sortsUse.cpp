@@ -7,8 +7,6 @@
 #include "linkedList.h"
 #include <fstream>
 
-
-
 using namespace std;
 
 void quickSort(LinkedList* list, int length);
@@ -29,6 +27,7 @@ int main()
     ifstream inFile;
     inFile.open("ints.txt");
 
+    //generate 2 lists for insersion and quick
     LinkedList* list1 = new LinkedList();
     LinkedList* list2 = new LinkedList();
     for (int i = 0; i < 30; i++)
@@ -47,6 +46,7 @@ int main()
     cout<<"quick sort data moves: "<<dataMoves<<"\n";
     outfile<<"quick sort data moves: "<<dataMoves<<"\n";
 
+    //reset comparisons and data moves for next sort
     comparisons=0;
     dataMoves=0;
 
@@ -134,7 +134,7 @@ void recQuickSort(LinkedList* list, int first, int last)
         recQuickSort(list, pivotLocation + 1, last);
     }
     comparisons++;
-} //end recQuickSort
+}
 
 int partition(LinkedList* list, int first, int last)
 {
@@ -158,40 +158,30 @@ int partition(LinkedList* list, int first, int last)
     swap(list, first, smallIndex);
 
     return smallIndex;
-} //end partition
+}
 
 void sortedInsert(struct Node**, struct Node*); 
 
-// function to sort a singly linked list using insertion sort 
 void insertionSort(LinkedList* list) 
 { 
     struct Node **head_ref = &list->head;
-    // Initialize sorted linked list 
     struct Node *sorted = NULL; 
-  
-    // Traverse the given linked list and insert every 
-    // node to sorted 
     struct Node *current = *head_ref; 
+
     while (current != NULL) 
     { 
-        // Store next for next iteration 
         struct Node *next = current->next; 
-  
-        // insert current in sorted linked list 
         sortedInsert(&sorted, current); 
-  
-        // Update current 
         current = next; 
     } 
   
-    // Update head_ref to point to sorted linked list 
     *head_ref = sorted; 
 } 
 
 void sortedInsert(Node** head_ref, Node* new_node) 
 { 
     Node* current; 
-    /* Special case for the head end */
+    //special case for head
     if (*head_ref == NULL || (*head_ref)->data >= new_node->data) 
     { 
         new_node->next = *head_ref; 
@@ -201,7 +191,7 @@ void sortedInsert(Node** head_ref, Node* new_node)
     } 
     else
     { 
-        /* Locate the node before the point of insertion */
+        //find the target node
         current = *head_ref; 
         while (current->next!=NULL && current->next->data < new_node->data) 
         { 
