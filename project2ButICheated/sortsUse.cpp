@@ -16,8 +16,7 @@ int partition(LinkedList* list, int first, int last);
 void recQuickSort(LinkedList* list, int first, int last);
 void swap(LinkedList* list, int first, int second);
 Node* indexTranslate(LinkedList* list, int index);
-
-void insertionSortStolen(struct Node **head_ref);
+void insertionSort(LinkedList* list);
 
 int comparisons = 0;
 int dataMoves = 0;
@@ -51,7 +50,7 @@ int main()
     comparisons=0;
     dataMoves=0;
 
-    insertionSortStolen(&list2->head);
+    insertionSort(list2);
 
     cout<<"insertion sort comparisons: "<<comparisons<<"\n";
     outfile<<"insertion sort comparisons: "<<comparisons<<"\n";
@@ -161,11 +160,12 @@ int partition(LinkedList* list, int first, int last)
     return smallIndex;
 } //end partition
 
-void sortedInsertStolen(struct Node**, struct Node*); 
+void sortedInsert(struct Node**, struct Node*); 
 
 // function to sort a singly linked list using insertion sort 
-void insertionSortStolen(struct Node **head_ref) 
+void insertionSort(LinkedList* list) 
 { 
+    struct Node **head_ref = &list->head;
     // Initialize sorted linked list 
     struct Node *sorted = NULL; 
   
@@ -178,7 +178,7 @@ void insertionSortStolen(struct Node **head_ref)
         struct Node *next = current->next; 
   
         // insert current in sorted linked list 
-        sortedInsertStolen(&sorted, current); 
+        sortedInsert(&sorted, current); 
   
         // Update current 
         current = next; 
@@ -188,7 +188,7 @@ void insertionSortStolen(struct Node **head_ref)
     *head_ref = sorted; 
 } 
 
-void sortedInsertStolen(Node** head_ref, Node* new_node) 
+void sortedInsert(Node** head_ref, Node* new_node) 
 { 
     Node* current; 
     /* Special case for the head end */
