@@ -25,43 +25,43 @@ int dataMoves = 0;
 int main()
 {
     ofstream outfile;
-    outfile.open("output.txt");
+    outfile.open("comparisons.txt");
 
     ifstream inFile;
     inFile.open("ints.txt");
 
-
-
-
-    LinkedList* list = new LinkedList();
-    for (int i = 0; i < 40; i++)
+    LinkedList* list1 = new LinkedList();
+    LinkedList* list2 = new LinkedList();
+    for (int i = 0; i < 30; i++)
     {
         int temp;
         inFile>>temp;
-        list->add(temp);
-        //cout<<temp<<" ";
+        list1->add(temp);
+        list2->add(temp);
         
     }
-    list->print();
-    cout<<"\nend of file yay\n";
-
     inFile.close();
-    //std::cout << "List Length: " << list->length << std::endl;
 
-    //swap(list, 9,0);
-    //list->print();
-    quickSort(list, list->length);
-    //insertionSortStolen(&list->head);
-    list->print();
-    cout<<comparisons<<"\n";
-    outfile<<comparisons<<"\n";
-    cout<<dataMoves;
-    outfile<<dataMoves<<"\n";
+    quickSort(list1, list1->length);
+    cout<<"quick sort comparisons: "<<comparisons<<"\n";
+    outfile<<"quick sort comparisons: "<<comparisons<<"\n";
+    cout<<"quick sort data moves: "<<dataMoves<<"\n";
+    outfile<<"quick sort data moves: "<<dataMoves<<"\n";
+
+    comparisons=0;
+    dataMoves=0;
+
+    insertionSortStolen(&list2->head);
+
+    cout<<"insertion sort comparisons: "<<comparisons<<"\n";
+    outfile<<"insertion sort comparisons: "<<comparisons<<"\n";
+    cout<<"insertion sort data moves: "<<dataMoves<<"\n";
+    outfile<<"insertion sort data moves: "<<dataMoves<<"\n";
 
     outfile.close();
 
-    delete list;
-
+    delete list1;
+    delete list2;
 
     return 0;
 }

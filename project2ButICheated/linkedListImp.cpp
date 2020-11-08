@@ -13,7 +13,7 @@ LinkedList::LinkedList(){
 }
 
 LinkedList::~LinkedList(){
-    std::cout << "LIST DELETED";
+    std::cout << "LIST DELETED\n";
 }
 
 void LinkedList::add(int data){

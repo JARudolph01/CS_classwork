@@ -1,0 +1,4 @@
+quick sort comparisons: 115
+quick sort data moves: 129
+insertion sort comparisons: 227
+insertion sort data moves: 60
