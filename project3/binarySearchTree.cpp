@@ -1,4 +1,3 @@
-//https://www.techiedelight.com/insertion-in-bst/
 #include <iostream>
 
 using namespace std;
@@ -12,7 +11,7 @@ public:
 
 Node* insertNode(Node* root, int key)
 {
-	// if the root is null, create a new node and return it
+	// if the root is null, create a new one
 	if (root == nullptr){
         Node* n = new Node;
         n->left=nullptr;
@@ -21,6 +20,7 @@ Node* insertNode(Node* root, int key)
         return n;
     }
 
+    //else, insert the node
 	else if (key < root->data){
 		root->left = insertNode(root->left, key);
     }
