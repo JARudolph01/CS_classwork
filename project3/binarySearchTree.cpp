@@ -7,14 +7,17 @@ public:
     Node* left;
     Node* right;
     int data;
+    void inorder(Node* root);
+    void preorder(Node* root);
+    void postorder(Node* root);
 };
 
 Node* insertNode(Node* root, int key){
 	// if the root is null, create a new one
-	if (root == nullptr){
+	if (root == NULL){
         Node* n = new Node;
-        n->left=nullptr;
-        n->right=nullptr;
+        n->left=NULL;
+        n->right=NULL;
         n->data=key;
         return n;
     }
@@ -29,7 +32,7 @@ Node* insertNode(Node* root, int key){
 }
 
 void inorder(Node* root){
-	if (root == nullptr){
+	if (root == NULL){
         return;
     }
 	inorder(root->left);
@@ -37,25 +40,25 @@ void inorder(Node* root){
 	inorder(root->right);
 }
 void preorder(Node* root){
-	if (root == nullptr){
+	if (root == NULL){
         return;
     }
 	cout << root->data << " ";
-    inorder(root->left);
-	inorder(root->right);
+    preorder(root->left);
+	preorder(root->right);
 }
 void postorder(Node* root){
-	if (root == nullptr){
+	if (root == NULL){
         return;
     }
-    inorder(root->left);
-	inorder(root->right);
+    postorder(root->left);
+	postorder(root->right);
     cout << root->data << " ";
 }
 
 
 int main(){
-    Node* tree=nullptr;
+    Node* tree=NULL;
 
     tree=insertNode(tree, 5);
     tree=insertNode(tree, 3);
