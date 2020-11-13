@@ -13,6 +13,7 @@
         "__config": "cpp",
         "__nullptr": "cpp",
         "iomanip": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "ios": "cpp"
     }
 }
