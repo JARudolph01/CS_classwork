@@ -9,8 +9,7 @@ public:
     int data;
 };
 
-Node* insertNode(Node* root, int key)
-{
+Node* insertNode(Node* root, int key){
 	// if the root is null, create a new one
 	if (root == nullptr){
         Node* n = new Node;
@@ -19,21 +18,17 @@ Node* insertNode(Node* root, int key)
         n->data=key;
         return n;
     }
-
     //else, insert the node
 	else if (key < root->data){
 		root->left = insertNode(root->left, key);
     }
-
 	else{
 		root->right = insertNode(root->right, key);
     }
-
 	return root;
 }
 
-void inorder(Node* root)
-{
+void inorder(Node* root){
 	if (root == nullptr){
         return;
     }
@@ -41,8 +36,7 @@ void inorder(Node* root)
 	cout << root->data << " ";
 	inorder(root->right);
 }
-void preorder(Node* root)
-{
+void preorder(Node* root){
 	if (root == nullptr){
         return;
     }
@@ -50,8 +44,7 @@ void preorder(Node* root)
     inorder(root->left);
 	inorder(root->right);
 }
-void postorder(Node* root)
-{
+void postorder(Node* root){
 	if (root == nullptr){
         return;
     }
@@ -62,7 +55,6 @@ void postorder(Node* root)
 
 
 int main(){
-
     Node* tree=nullptr;
 
     tree=insertNode(tree, 5);
@@ -70,8 +62,14 @@ int main(){
     tree=insertNode(tree, 1);
     tree=insertNode(tree, 7);
     tree=insertNode(tree, 7);
+
+
+    cout<<"inorder: ";
+    inorder(tree);
+    cout<<"\npreorder: ";
+    preorder(tree);
+    cout<<"\npostorder: ";
     postorder(tree);
-
-
+    cout<<endl;
     return 0;
 }
