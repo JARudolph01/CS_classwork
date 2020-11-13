@@ -13,6 +13,4 @@ public:
     void postorder(Node* root);
     Node* insertNode(Node* root, int key);
 };
-
-
 #endif

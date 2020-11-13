@@ -1,17 +1,23 @@
 #include <iostream>
+#include <fstream>
 #include "jar.node.h" 
 
 using namespace std;
 
+ifstream inFile;
+
+
 int main(){
     Node* tree=NULL;
 
-    tree=tree->insertNode(tree, 5);
-    tree=tree->insertNode(tree, 3);
-    tree=tree->insertNode(tree, 1);
-    tree=tree->insertNode(tree, 7);
-    tree=tree->insertNode(tree, 7);
+    inFile.open("ints.txt");
+    while(!inFile.eof()){
+        int temp;
+        inFile>>temp;
+        tree=tree->insertNode(tree, temp);
+    }
 
+    
 
     cout<<"inorder: ";
     tree->inorder(tree);
