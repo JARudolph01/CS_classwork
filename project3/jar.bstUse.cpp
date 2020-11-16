@@ -16,8 +16,7 @@ int main(){
         inFile>>temp;
         tree=tree->insertNode(tree, temp);
     }
-
-    
+    inFile.close();
 
     cout<<"inorder: ";
     tree->inorder(tree);
@@ -26,5 +25,6 @@ int main(){
     cout<<"\npostorder: ";
     tree->postorder(tree);
     cout<<endl;
+
     return 0;
 }
