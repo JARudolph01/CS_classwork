@@ -1,3 +1,9 @@
+/*
+John Rudolph
+Project 3 node implementation
+11/20
+*/
+
 #include <iostream>
 #include "jar.node.h"
 

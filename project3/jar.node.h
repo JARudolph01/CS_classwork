@@ -1,3 +1,9 @@
+/*
+John Rudolph
+Project 3 node header
+11/20
+*/
+
 #ifndef NODE
 #define NODE 
 

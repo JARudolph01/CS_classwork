@@ -1,3 +1,9 @@
+/*
+John Rudolph
+Project 3 Use
+11/20
+*/
+
 #include <iostream>
 #include <fstream>
 #include "jar.node.h" 
