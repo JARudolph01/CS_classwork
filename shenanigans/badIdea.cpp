@@ -6,9 +6,9 @@ int main(){
 
     cout<<"hello there\n";
 
-    system("/bin/bash");
+    system("./test.sh");
 
-    cout<<"done\n";
+    cout<<system<<"\ndone\n";
 
     return 0;
 }
