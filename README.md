@@ -1,2 +1,2 @@
 # CS_classwork
-I hate having to transfer files from the Mac lab to my pc
+These are most of my projects from CS1. Feel free to use them as examples, but please don't just copy+paste.
