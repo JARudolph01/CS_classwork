@@ -32,6 +32,11 @@ void print(){
 }
 
 void delete(int key){
+    //if head itself needs to be deleted
+    if(head->key=key){
+        head=head->next;
+        return;
+    }
     struct node *current = head;
     struct node *next = head->next;
     while(current!=NULL){
@@ -40,8 +45,6 @@ void delete(int key){
             current->next = next->next;
             return;
         }
-        int data = current->data;
-        printf("%d\n",data);
         current=next;
         next=next->next;
     }
@@ -57,7 +60,7 @@ int main(){
     print(head);
     printf("\n");
 
-    delete(7);
+    delete(8);
     print(head);
 
 
