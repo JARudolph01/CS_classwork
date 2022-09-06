@@ -50,6 +50,23 @@ void delete(int key){
     }
 }
 
+void search(int key){
+    if(head->key==key){
+        int data = head->data;
+        printf("%d\n",data);
+        return;
+    }
+    struct node *next = head;
+    while(next!=NULL){
+        if(next->key==key){
+            int data = next->data;
+            printf("%d\n",data);
+            return;
+        }
+        next=next->next;
+    }
+}
+
 
 int main(){
     insert(5,1);
@@ -62,6 +79,9 @@ int main(){
 
     delete(8);
     print(head);
+    printf("\n");
+
+    search(7);
 
 
     return 0;
