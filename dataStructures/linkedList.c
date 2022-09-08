@@ -102,30 +102,9 @@ void print_length(){
     printf("%d\n",c);
 }
 
-
-// int main(){
-//     // insert(5,1);
-//     // insert(6,2);
-//     // insert(7,3);
-//     // insert(8,4);
-
-//     // print(head);
-//     // printf("\n");
-
-
-//     // insertAfterKey(8,9,100);
-//     // print(head);
-
-//     // printf("\n");
-
-//     // delete(8);
-//     // print(head);
-//     // printf("\n");
-
-//     // search(7);
-
 int main()
 {
+//frontend stolen and tweaked from blackboard
  int ch = 0;
 
  while(ch !=6) {
