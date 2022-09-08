@@ -55,7 +55,9 @@ void print(){
 void delete(int key){
     //if head itself needs to be deleted
     if(head->key=key){
+        struct node *tmp = head;
         head=head->next;
+        free(tmp);
         return;
     }
     struct node *current = head;
