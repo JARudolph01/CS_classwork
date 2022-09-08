@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct node{
-    int key; //no idea why we need this
+    int key;
     int data;
     struct node *next;
 };
@@ -20,6 +20,27 @@ void insert(int key, int data){
     //link
     new->next = head;
     head = new;
+}
+
+void insertAfterKey(int key, int newKey, int data){
+    struct node *current = head;
+    while(current!=NULL){
+        if(current->key==key){
+
+            struct node *new = (struct node*)malloc(sizeof(struct node)); //allocate memory
+
+            //add data
+            new->key = key;
+            new->data = data;
+
+            //link
+            new->next = current->next;
+            current->next = new;
+
+            return;
+        }
+        current=current->next;
+    }
 }
 
 void print(){
@@ -75,6 +96,12 @@ int main(){
     insert(8,4);
 
     print(head);
+    printf("\n");
+
+
+    insertAfterKey(8,9,100);
+    print(head);
+
     printf("\n");
 
     delete(8);
