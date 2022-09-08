@@ -63,7 +63,9 @@ void delete(int key){
     while(current!=NULL){
         if(next->key==key){
             //link around
+            struct node *tmp = current->next;
             current->next = next->next;
+            free(tmp);
             return;
         }
         current=next;
