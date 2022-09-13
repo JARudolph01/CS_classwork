@@ -61,23 +61,33 @@ void delete(int key){
     }
 }
 
-void search(int key){
-    if(head->key==key){
-        int data = head->data;
-        printf("%d\n",data);
+*/
+
+void search(int value){
+    if(head->value==value){
+        int reading_date = head->reading_date;
+        int reading_time = head->reading_time;
+        int value = head->value;
+        printf("date:%d ",reading_date);
+        printf("time:%d ",reading_time);
+        printf("value:%d\n",value);
         return;
     }
     struct node *next = head;
     while(next!=NULL){
-        if(next->key==key){
-            int data = next->data;
-            printf("%d\n",data);
+        if(next->value==value){
+            int reading_date = next->reading_date;
+            int reading_time = next->reading_time;
+            int value = next->value;
+            printf("date:%d ",reading_date);
+            printf("time:%d ",reading_time);
+            printf("value:%d\n",value);
             return;
         }
         next=next->next;
     }
 }
-*/
+
 void print_length(){
     struct node *current = head;
     int c=0;
@@ -109,12 +119,6 @@ int rd,rt,d;
  } else if(ch == 2) {
  print_length();
  } else if(ch == 3) {
- int ch2 = 0;
-
- printf("1- Insert first\n");
- printf("2- Insert after key\n");
- printf("\nYour choice: ");
- scanf("%d", &ch2);
 
  printf("\nEnter date:");
  scanf("%d", &rd);
@@ -125,16 +129,16 @@ printf("\nEnter time:");
  printf("\nEnter value:");
  scanf("%d", &d);
 
- if(ch2 == 1) {
  insert(rd,rt,d);
- }
+
 
  } else if(ch == 4) {
  printf("\nEnter key:");
 //  delete(k);
  } else if(ch == 5) {
- printf("\nEnter key:");
-//  search(k);
+ printf("\nEnter value:");
+    scanf("%d", &d);
+    search(d);
  }
  }
 
