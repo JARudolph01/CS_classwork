@@ -37,10 +37,10 @@ void print(){
         next=next->next;
     }
 }
-/*
-void delete(int key){
+
+void delete(int date, int time){
     //if head itself needs to be deleted
-    if(head->key=key){
+    if(head->reading_date=date && head->reading_time==time){
         struct node *tmp = head;
         head=head->next;
         free(tmp);
@@ -49,7 +49,7 @@ void delete(int key){
     struct node *current = head;
     struct node *next = head->next;
     while(current!=NULL){
-        if(next->key==key){
+        if(next->reading_date==date && next->reading_time==time){
             //link around
             struct node *tmp = current->next;
             current->next = next->next;
@@ -61,7 +61,7 @@ void delete(int key){
     }
 }
 
-*/
+
 
 void search(int value){
     if(head->value==value){
@@ -103,7 +103,7 @@ int main(){
 
 printf("Welcome to sensory reading system\n");
 
- while(ch !=6) {
+ while(ch !=8) {
 int rd,rt,d;
 printf("1- Add a sensory reading\n");
 printf("2- Remove a sensory reading based on specific date and time\n");
@@ -133,7 +133,13 @@ printf("\nEnter time:");
 
 //remove specific
 else if(ch==2){
-    continue;
+    printf("\nEnter date:");
+    scanf("%d", &rd);
+
+    printf("\nEnter time:");
+    scanf("%d", &rt);
+
+    delete(rd,rt);
 } 
 
 //remove all
@@ -150,14 +156,11 @@ else if(ch == 4) {
 
  //print all
 else if(ch == 5) {
- printf("\nEnter value:");
-    scanf("%d", &d);
-    search(d);
+ print();
  }
 
  //print number
  else if(ch == 6) {
- printf("\nEnter value:");
     print_length();
  }
 
@@ -167,7 +170,7 @@ else if(ch == 5) {
  }
 
  //exit
- else if(ch == 9) {
+ else if(ch == 8) {
     return 0;
  }
 
