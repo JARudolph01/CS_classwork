@@ -98,27 +98,26 @@ void print_length(){
     printf("%d\n",c);
 }
 
-int main()
-{
-//frontend stolen and tweaked from blackboard
+int main(){
  int ch = 0;
+
+printf("Welcome to sensory reading system\n");
 
  while(ch !=6) {
 int rd,rt,d;
- printf("1- Print list\n");
- printf("2- Print list length\n");
- printf("3- Insert\n");
- printf("4- Delete\n");
- printf("5- Search\n");
- printf("6- Exit\n");
- printf("\nYour choice: ");
- scanf("%d", &ch);
+printf("1- Add a sensory reading\n");
+printf("2- Remove a sensory reading based on specific date and time\n");
+printf("3- Remove all sensory readings with a specific value\n");
+printf("4- Search for a specific sensory reading value\n");
+printf("5- Print information of all sensory readings\n");
+printf("6- Print the number of sensory readings saved in the system\n");
+printf("7- Print the average of all sensory reading values\n");
+printf("8- Exit\n");
+printf("\nYour choice: ");
+scanf("%d", &ch);
 
- if(ch == 1) {
- print();
- } else if(ch == 2) {
- print_length();
- } else if(ch == 3) {
+//insert
+if(ch == 1) {
 
  printf("\nEnter date:");
  scanf("%d", &rd);
@@ -130,17 +129,48 @@ printf("\nEnter time:");
  scanf("%d", &d);
 
  insert(rd,rt,d);
+} 
 
+//remove specific
+else if(ch==2){
+    continue;
+} 
 
- } else if(ch == 4) {
- printf("\nEnter key:");
-//  delete(k);
- } else if(ch == 5) {
+//remove all
+else if(ch==3){
+    continue;
+}
+
+//search
+else if(ch == 4) {
+  printf("\nEnter value:");
+    scanf("%d", &d);
+    search(d);
+ }
+
+ //print all
+else if(ch == 5) {
  printf("\nEnter value:");
     scanf("%d", &d);
     search(d);
  }
+
+ //print number
+ else if(ch == 6) {
+ printf("\nEnter value:");
+    print_length();
  }
 
+ //print ave
+ else if(ch == 7) {
+ continue;
+ }
+
+ //exit
+ else if(ch == 9) {
+    return 0;
+ }
+
+ } 
  return 0;
-}
+ }
