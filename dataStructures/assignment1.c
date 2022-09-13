@@ -61,6 +61,35 @@ void delete(int date, int time){
     }
 }
 
+void deleteAllWithValue(int value){
+    //if head itself needs to be deleted
+
+    while (head->value==value){
+        struct node *tmp = head;
+        head=head->next;
+        printf("deleted head\n");
+        free(tmp);
+        if(head==NULL){
+            return;
+        }
+    }
+    
+    struct node *current = head;
+    struct node *next = head;
+    while(current!=NULL){
+        next=next->next;
+        if(next->value==value){
+            //link around
+            struct node *tmp = current->next;
+            current->next = next->next;
+            printf("deleted body\n");
+            free(tmp);
+        }
+        current=next;
+        
+    }
+}
+
 
 
 void search(int value){
@@ -144,7 +173,9 @@ else if(ch==2){
 
 //remove all
 else if(ch==3){
-    continue;
+    printf("\nEnter value:");
+    scanf("%d", &d);
+    deleteAllWithValue(d);
 }
 
 //search
