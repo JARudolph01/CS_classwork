@@ -86,7 +86,6 @@ void deleteAllWithValue(int value){
         }
         current=current->next;
     }
-    
 }
 
 
@@ -126,90 +125,101 @@ void print_length(){
     printf("%d\n",c);
 }
 
-int main(){
- int ch = 0;
- insert(1,2,3);
- insert(1,2,3);
- insert(4,5,6);
- insert(1,2,3);
- insert(1,2,3);
- insert(1,2,3);
-
-printf("Welcome to sensory reading system\n");
-
- while(ch !=8) {
-int rd,rt,d;
-printf("1- Add a sensory reading\n");
-printf("2- Remove a sensory reading based on specific date and time\n");
-printf("3- Remove all sensory readings with a specific value\n");
-printf("4- Search for a specific sensory reading value\n");
-printf("5- Print information of all sensory readings\n");
-printf("6- Print the number of sensory readings saved in the system\n");
-printf("7- Print the average of all sensory reading values\n");
-printf("8- Exit\n");
-printf("\nYour choice: ");
-scanf("%d", &ch);
-
-//insert
-if(ch == 1) {
-
- printf("\nEnter date:");
- scanf("%d", &rd);
-
-printf("\nEnter time:");
- scanf("%d", &rt);
-
- printf("\nEnter value:");
- scanf("%d", &d);
-
- insert(rd,rt,d);
-} 
-
-//remove specific
-else if(ch==2){
-    printf("\nEnter date:");
-    scanf("%d", &rd);
-
-    printf("\nEnter time:");
-    scanf("%d", &rt);
-
-    delete(rd,rt);
-} 
-
-//remove all
-else if(ch==3){
-    printf("\nEnter value:");
-    scanf("%d", &d);
-    deleteAllWithValue(d);
+void print_average(){
+    struct node *current = head;
+    int c=0;
+    int s=0;
+    while(current!=NULL){
+        c++;
+        s+=current->value;
+        current=current->next;
+    }
+    printf("%f\n",(float)s/c);
 }
 
-//search
-else if(ch == 4) {
-  printf("\nEnter value:");
-    scanf("%d", &d);
-    search(d);
- }
+int main(){
+    int ch = 0;
+    insert(1,2,3);
+    insert(1,2,3);
+    insert(4,5,6);
+    insert(1,2,3);
+    insert(1,2,3);
+    insert(1,2,3);
 
- //print all
-else if(ch == 5) {
- print();
- }
+    printf("Welcome to sensory reading system\n");
 
- //print number
- else if(ch == 6) {
-    print_length();
- }
+    while(ch !=8) {
+        int rd,rt,d;
+        printf("1- Add a sensory reading\n");
+        printf("2- Remove a sensory reading based on specific date and time\n");
+        printf("3- Remove all sensory readings with a specific value\n");
+        printf("4- Search for a specific sensory reading value\n");
+        printf("5- Print information of all sensory readings\n");
+        printf("6- Print the number of sensory readings saved in the system\n");
+        printf("7- Print the average of all sensory reading values\n");
+        printf("8- Exit\n");
+        printf("\nYour choice: ");
+        scanf("%d", &ch);
 
- //print ave
- else if(ch == 7) {
- continue;
- }
+        //insert
+        if(ch == 1) {
 
- //exit
- else if(ch == 8) {
+        printf("\nEnter date:");
+        scanf("%d", &rd);
+
+        printf("\nEnter time:");
+        scanf("%d", &rt);
+
+        printf("\nEnter value:");
+        scanf("%d", &d);
+
+        insert(rd,rt,d);
+        } 
+
+        //remove specific
+        else if(ch==2){
+            printf("\nEnter date:");
+            scanf("%d", &rd);
+
+            printf("\nEnter time:");
+            scanf("%d", &rt);
+
+            delete(rd,rt);
+        } 
+
+        //remove all
+        else if(ch==3){
+            printf("\nEnter value:");
+            scanf("%d", &d);
+            deleteAllWithValue(d);
+        }
+
+        //search
+        else if(ch == 4) {
+        printf("\nEnter value:");
+            scanf("%d", &d);
+            search(d);
+        }
+
+        //print all
+        else if(ch == 5) {
+        print();
+        }
+
+        //print number
+        else if(ch == 6) {
+            print_length();
+        }
+
+        //print ave
+        else if(ch == 7) {
+            print_average();
+        }
+
+        //exit
+        else if(ch == 8) {
+            return 0;
+        }
+    } 
     return 0;
- }
-
- } 
- return 0;
- }
+}
