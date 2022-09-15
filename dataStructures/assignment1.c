@@ -39,6 +39,9 @@ void print(){
 }
 
 void delete(int date, int time){
+    if(head==NULL){
+        return;
+    }
     //if head itself needs to be deleted
     if(head->reading_date=date && head->reading_time==time){
         struct node *tmp = head;
@@ -63,6 +66,10 @@ void delete(int date, int time){
 
 void deleteAllWithValue(int value){
     //if head itself needs to be deleted
+
+    if(head==NULL){
+        return;
+    }
 
     while (head->value==value){
         struct node *tmp = head;
@@ -91,6 +98,9 @@ void deleteAllWithValue(int value){
 
 
 void search(int value){
+    if(head==NULL){
+        return;
+    }
     if(head->value==value){
         int reading_date = head->reading_date;
         int reading_time = head->reading_time;
@@ -126,6 +136,10 @@ void print_length(){
 }
 
 void print_average(){
+    if(head==NULL){
+        printf("no data in list\n");
+        return;
+    }
     struct node *current = head;
     int c=0;
     int s=0;
