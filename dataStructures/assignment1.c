@@ -139,12 +139,6 @@ void print_average(){
 
 int main(){
     int ch = 0;
-    insert(1,2,3);
-    insert(1,2,3);
-    insert(4,5,6);
-    insert(1,2,3);
-    insert(1,2,3);
-    insert(1,2,3);
 
     printf("Welcome to sensory reading system\n");
 
