@@ -1,3 +1,9 @@
+/*
+John Rudolph
+Assignment 1
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
