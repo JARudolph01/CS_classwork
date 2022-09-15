@@ -75,19 +75,18 @@ void deleteAllWithValue(int value){
     }
     
     struct node *current = head;
-    struct node *next = head;
     while(current!=NULL){
-        next=next->next;
-        if(next->value==value){
+        while (current->next!=NULL && current->next->value==value ){
+            
             //link around
             struct node *tmp = current->next;
-            current->next = next->next;
+            current->next = current->next->next;
             printf("deleted body\n");
             free(tmp);
         }
-        current=next;
-        
+        current=current->next;
     }
+    
 }
 
 
@@ -129,6 +128,12 @@ void print_length(){
 
 int main(){
  int ch = 0;
+ insert(1,2,3);
+ insert(1,2,3);
+ insert(4,5,6);
+ insert(1,2,3);
+ insert(1,2,3);
+ insert(1,2,3);
 
 printf("Welcome to sensory reading system\n");
 
