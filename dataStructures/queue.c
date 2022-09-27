@@ -10,7 +10,7 @@ struct node *front = NULL;
 struct node *back = NULL;
 
 //add a node to the back of the queue
-void insert(int data){
+void push(int data){
     //allocate memory
     struct node *new = (struct node*)malloc(sizeof(struct node)); 
 
@@ -26,7 +26,14 @@ void insert(int data){
         back->next = new;
         back=new;
     }
+}
 
+int pop(){
+    int data = front->data;
+    struct node *tmp=front;
+    front=front->next;
+    free(tmp);
+    return data;
 }
 
 //print all nodes in the queue
@@ -42,16 +49,16 @@ void print(){
 
         current=current->next;
     }
-}
+} 
 
 int main(){
     printf("wtf");
-    insert(1);
-    insert(2);
-    insert(3);
-    insert(4);
-    insert(5);
-    insert(6);
+    push(1);
+    push(2);
+    push(3);
+    push(4);
+    push(5);
+    push(6);
 
     print();
 
