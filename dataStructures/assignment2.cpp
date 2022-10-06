@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Task {       // The class
@@ -46,6 +47,70 @@ class Task {       // The class
       this.arrival_time = arrivalTime;
       this.transaction_time = transaction_time;
     }
-
-
 };
+
+class Server{
+    Task currentTask;
+    string status;
+    int transaction_time;
+
+    bool isFree(){
+        return status=="Free";
+    }
+    void setBusy()
+    {
+        status = "Busy";
+    }
+    void setFree(){
+        status="Free";
+    }
+
+    void setTransactionTime(int transactionTime){
+        this.transaction_time=transactionTime;
+    }
+
+    void setTransactionTime(){
+        this.transaction_time=currentTask.transaction_time;
+    }
+
+    const int getRemainingTransactionTime()
+    {
+        return this.transaction_time;
+    }
+
+    void decreaseTransactionTime(){
+        this.transaction_time--;
+    }
+    
+    void setCurrentTask(Task task)
+    {
+        this.currentTask = task;
+    } 
+    int getCurrentTaskNumber(){
+        return this.currentTask.task_number;
+    }
+
+    int getCurrentTaskArrivalTime()
+    {
+        return this.currentTask.arrival_time;
+    }
+    int getCurrentTaskWaitingTime(){
+        return this.currentTask.waiting_time;
+    }
+
+    int getCurrentTaskTransactionTime()
+    {
+        return this.currentTask.transaction_time;
+    }
+
+
+
+    Server() {
+      this.currentTask=NULL;
+      this.status="Free";
+      this.transaction_time=0;
+    }
+
+
+
+}
