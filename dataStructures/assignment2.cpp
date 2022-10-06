@@ -171,6 +171,26 @@ class ServerList{
 
 int main()
 {
+    int simulationTime, numberOfServers, numberOfQueues, numberOfTasks, taskMinimumTransactionTime, taskMaximumTransactionTime, timeBetweenTasks;
+
+    printf("simulationTime: ");
+    scanf("%d", int simulationTime);
+    printf("Number of Servers: ");
+    scanf("%d", int numberOfServers);
+    printf("Number of Queues: ");
+    scanf("%d", int numberOfQueues);
+    printf("Number of Tasks: ");
+    scanf("%d", int numberOfTasks);
+    printf("Minimum transaction time: ");
+    scanf("%d", int taskMinimumTransactionTime);
+    printf("Maximum transaction time: ");
+    scanf("%d", int taskMaximumTransactionTime);
+    printf("Time between task arrivals: ");
+    scanf("%d", int timeBetweenTasks);
+
+
+
+
     queue<Task> tasks;
 
     printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
