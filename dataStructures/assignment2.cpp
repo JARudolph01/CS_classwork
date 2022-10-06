@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <queue>
+
 using namespace std;
 
 class Task {       // The class
@@ -10,107 +12,167 @@ class Task {       // The class
     int transaction_time;
 
     void setCustomerInfo(int taskNum = 0, int waitingTime = 0, int arrivalTime = 0, int transactionTime = 0) {
-         this.task_number = taskNum;
-         this.waiting_time = waitingTime;
-         this.arrival_time = arrivalTime;
-         this.transaction_time = transactionTime;
-      }
+         task_number = taskNum;
+         waiting_time = waitingTime;
+         arrival_time = arrivalTime;
+         transaction_time = transactionTime;
+    }
 
     int getWaitingTime()
     {
-        return this.waiting_time;
+        return waiting_time;
     }
     void setWaitingTime(int waitingTime){
-        this.waiting_time = waitingTime;
+        waiting_time = waitingTime;
     }
     void incrementWaitingTime()
     {
-        this.waiting_time++;
+        waiting_time++;
     }
 
     const int getArrivalTime(){
-        return this.arrival_time;
+        return arrival_time;
     }
 
     const int getTransactionTime()
     {
-        return this.transaction_time;
+        return transaction_time;
     }
 
     int getTaskNumber(){
-        return this.task_number;
+        return task_number;
     }
 
     Task(int taskNum, int waitingTime, int arrivalTime, int transactionTime) {
-      this.task_number = taskNum;
-      this.waiting_time = waitingTime;
-      this.arrival_time = arrivalTime;
-      this.transaction_time = transaction_time;
+      task_number = taskNum;
+      waiting_time = waitingTime;
+      arrival_time = arrivalTime;
+      transaction_time = transaction_time;
     }
 };
 
 class Server{
-    Task currentTask;
-    string status;
-    int transaction_time;
+    public:
+        Task *currentTask;
+        string status;
+        int transaction_time;
 
-    bool isFree(){
-        return status=="Free";
-    }
-    void setBusy()
-    {
-        status = "Busy";
-    }
-    void setFree(){
+        bool isFree(){
+            return status=="Free";
+        }
+        void setBusy()
+        {
+            status = "Busy";
+        }
+        void setFree(){
+            status="Free";
+        }
+
+        void setTransactionTime(int transactionTime){
+            transaction_time=transactionTime;
+            status="Busy";
+        }
+
+        void setTransactionTime(){
+            transaction_time=currentTask->transaction_time;
+        }
+
+        const int getRemainingTransactionTime()
+        {
+            return transaction_time;
+        }
+
+        void decreaseTransactionTime(){
+            transaction_time--;
+            if(transaction_time<=0){
+                status="Free";
+            }
+        }
+        
+        void setCurrentTask(Task task)
+        {
+            currentTask = &task;
+            status="Busy";
+            setTransactionTime();
+        } 
+        int getCurrentTaskNumber(){
+            return currentTask->task_number;
+        }
+
+        int getCurrentTaskArrivalTime()
+        {
+            return currentTask->arrival_time;
+        }
+        int getCurrentTaskWaitingTime(){
+            return currentTask->waiting_time;
+        }
+
+        int getCurrentTaskTransactionTime()
+        {
+            return currentTask->transaction_time;
+        }
+
+
+
+        Server() {
+        currentTask=NULL;
         status="Free";
-    }
+        transaction_time=0;
+        }
+};
 
-    void setTransactionTime(int transactionTime){
-        this.transaction_time=transactionTime;
-    }
 
-    void setTransactionTime(){
-        this.transaction_time=currentTask.transaction_time;
-    }
-
-    const int getRemainingTransactionTime()
-    {
-        return this.transaction_time;
-    }
-
-    void decreaseTransactionTime(){
-        this.transaction_time--;
-    }
+class ServerList{
+    public:
     
-    void setCurrentTask(Task task)
-    {
-        this.currentTask = task;
-    } 
-    int getCurrentTaskNumber(){
-        return this.currentTask.task_number;
-    }
+        Server *servers;
+        int numOfServers=sizeof(servers);
 
-    int getCurrentTaskArrivalTime()
-    {
-        return this.currentTask.arrival_time;
-    }
-    int getCurrentTaskWaitingTime(){
-        return this.currentTask.waiting_time;
-    }
+        const int getFreeServerID(){
+            for(int i=0;i<sizeof(servers);i++){
+                if(servers[i].isFree()){
+                    return i;
+                }
+            }
+            printf("no free servers");
+            return -1;
+        }
 
-    int getCurrentTaskTransactionTime()
-    {
-        return this.currentTask.transaction_time;
-    }
+        const int getNumberOfBusyServers()
+        {
+            int count = 0;
+            for(int i=0;i<sizeof(servers);i++){
+                if(!servers[i].isFree()){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        void setServerBusy(int a, Task task, int b){ //no clue what he wants    
+        }
+
+        void setServerBusy(int serverIndex,Task task){
+            servers[serverIndex].setCurrentTask(task);
+        }
+
+        void updateServers(){
+            for(int i=0;i<sizeof(servers);i++){
+            servers[i].decreaseTransactionTime();
+            }
+        }
+
+        ServerList(int serverCount) {
+            servers=new Server[serverCount];
+        }
+};
 
 
 
-    Server() {
-      this.currentTask=NULL;
-      this.status="Free";
-      this.transaction_time=0;
-    }
+int main()
+{
+    queue<Task> tasks;
 
-
-
-}
+    printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    return 0;
+};
