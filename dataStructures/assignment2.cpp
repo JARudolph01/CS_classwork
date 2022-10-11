@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ class Task {       // The class
         return task_number;
     }
 
-    Task(int taskNum, int waitingTime, int arrivalTime, int transactionTime) {
+    Task(int taskNum, int waitingTime=0, int arrivalTime, int transactionTime) {
       task_number = taskNum;
       waiting_time = waitingTime;
       arrival_time = arrivalTime;
@@ -115,9 +116,9 @@ class Server{
 
 
         Server() {
-        currentTask=NULL;
-        status="Free";
-        transaction_time=0;
+            currentTask=NULL;
+            status="Free";
+            transaction_time=0;
         }
 };
 
@@ -164,6 +165,10 @@ class ServerList{
 
         ServerList(int serverCount) {
             servers=new Server[serverCount];
+            for(int i=0;i<serverCount;i++){
+                servers[i]=new Server();
+            }
+            
         }
 };
 
@@ -188,12 +193,39 @@ int main()
     printf("Time between task arrivals: ");
     scanf("%d", int timeBetweenTasks);
 
-    
-
-
+    serverList = new ServerList(numberOfServers);
 
 
     queue<Task> tasks;
+    int currentTaskNum=0;
+
+    for(int i = 0; i < simulationTime; i++)
+    {
+        //queue new tasks
+        if(i % timeBetweenTasks == 0 && numberOfTasks != 0)
+        {
+            tasks.push(new Task(currentTask, 0, i, (rand() % (taskMaximumTransactionTime-taskMinimumTransactionTime)+taskMinimumTransactionTime)));
+            currentTaskNum++;
+            numberOfTasks--;
+        }
+
+        //send task to server
+        int freeID=serverList.getFreeServerID();
+        if(freeID!=-1 && !tasks.empty()){
+            serverList.setServerBusy(freeID, tasks.front());
+            tasks.pop();
+        }
+
+        serverList.updateServers();
+
+
+        tmpTasks = [numberOfTasks]
+
+    }
+
+
+
+
 
     printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     return 0;
