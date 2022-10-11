@@ -44,7 +44,7 @@ class Task {       // The class
         return task_number;
     }
 
-    Task(int taskNum, int waitingTime=0, int arrivalTime, int transactionTime) {
+    Task(int taskNum, int arrivalTime, int transactionTime, int waitingTime=0) {
       task_number = taskNum;
       waiting_time = waitingTime;
       arrival_time = arrivalTime;
@@ -126,7 +126,7 @@ class Server{
 class ServerList{
     public:
     
-        Server *servers;
+        Server servers[]={};
         int numOfServers=sizeof(servers);
 
         const int getFreeServerID(){
@@ -148,6 +148,14 @@ class ServerList{
                 }
             }
             return count;
+        }
+
+        void decrementTheTransactionTimeOfAllTheBusyServersPlease(){
+            for(int i=0;i<sizeof(servers);i++){
+                if(!servers[i].isFree()){
+                    servers[i].decreaseTransactionTime();
+                }
+            }
         }
 
         void setServerBusy(int a, Task task, int b){ //no clue what he wants    
@@ -204,7 +212,7 @@ int main()
         //queue new tasks
         if(i % timeBetweenTasks == 0 && numberOfTasks != 0)
         {
-            tasks.push(new Task(currentTask, 0, i, (rand() % (taskMaximumTransactionTime-taskMinimumTransactionTime)+taskMinimumTransactionTime)));
+            tasks.push(new Task(currentTask, i, (rand() % (taskMaximumTransactionTime-taskMinimumTransactionTime)+taskMinimumTransactionTime),0));
             currentTaskNum++;
             numberOfTasks--;
         }
@@ -219,8 +227,20 @@ int main()
         serverList.updateServers();
 
 
-        tmpTasks = [numberOfTasks]
+        
+        serverList.decrementTheTransactionTimeOfAllTheBusyServersPlease();
 
+        Task tmpTasks = [numberOfTasks];
+        int tmpIndex=0;
+        while(!tasks.empty()){
+            tmpTasks[tmpIndex]=tasks.front();
+            tmpIndex++;
+            tasks.pop();
+        }
+        for(int i=0;i<numberOfTasks;i++){
+            tmpTasks[tmpIndex].waiting_time++;
+            tasks.push(tmpTasks[tmpIndex]);
+        }
     }
 
 
