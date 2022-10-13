@@ -5,10 +5,12 @@
 
 using namespace std;
 
-class Task {       // The class
-  public:             // Access specifier
-    int task_number;        // Attribute (int variable)
-    int arrival_time;  // Attribute (string variable_n
+
+
+class Task {
+  public:    
+    int task_number;  
+    int arrival_time;
     int waiting_time;
     int transaction_time;
 
@@ -90,9 +92,9 @@ class Server{
             }
         }
         
-        void setCurrentTask(Task task)
+        void setCurrentTask(Task *task)
         {
-            currentTask = &task;
+            currentTask = task;
             status="Busy";
             setTransactionTime();
         } 
@@ -122,17 +124,16 @@ class Server{
         }
 };
 
-
 class ServerList{
     public:
     
-        // Server servers[0]={};
+        Server **servers;
         int numOfServers;
-        Server servers[numOfServers]={}
+        // Server servers[numOfServers]={}
 
         const int getFreeServerID(){
-            for(int i=0;i<sizeof(servers);i++){
-                if(servers[i].isFree()){
+            for(int i=0;i<numOfServers;i++){
+                if(servers[i]->isFree()){
                     return i;
                 }
             }
@@ -143,8 +144,8 @@ class ServerList{
         const int getNumberOfBusyServers()
         {
             int count = 0;
-            for(int i=0;i<sizeof(servers);i++){
-                if(!servers[i].isFree()){
+            for(int i=0;i<numOfServers;i++){
+                if(!servers[i]->isFree()){
                     count++;
                 }
             }
@@ -153,8 +154,8 @@ class ServerList{
 
         void decrementTheTransactionTimeOfAllTheBusyServersPlease(){
             for(int i=0;i<sizeof(servers);i++){
-                if(!servers[i].isFree()){
-                    servers[i].decreaseTransactionTime();
+                if(!servers[i]->isFree()){
+                    servers[i]->decreaseTransactionTime();
                 }
             }
         }
@@ -162,93 +163,44 @@ class ServerList{
         void setServerBusy(int a, Task task, int b){ //no clue what he wants    
         }
 
-        void setServerBusy(int serverIndex,Task task){
-            servers[serverIndex].setCurrentTask(task);
+        void setServerBusy(int serverIndex,Task *task){
+            servers[serverIndex]->setCurrentTask(task);
         }
 
         void updateServers(){
             for(int i=0;i<sizeof(servers);i++){
-            servers[i].decreaseTransactionTime();
+            servers[i]->decreaseTransactionTime();
             }
         }
 
         ServerList(int serverCount) {
             serverCount=serverCount;
-            servers=new Server[serverCount];
+            servers=new Server*[serverCount];
             for(int i=0;i<serverCount;i++){
                 servers[i]=new Server();
             }
-            
         }
 };
 
 
 
-int main()
-{
-    int simulationTime, numberOfServers, numberOfQueues, numberOfTasks, taskMinimumTransactionTime, taskMaximumTransactionTime, timeBetweenTasks;
+int main(){
+    int 
+        simulationTime, 
+        numberOfServers, 
+        numberOfTasks, 
+        transactionTimeMin,
+        transactionTimeMax,
+        timeBetweenTasks;
 
-    printf("simulationTime: ");
-    scanf("%d", int simulationTime);
-    printf("Number of Servers: ");
-    scanf("%d", int numberOfServers);
-    printf("Number of Queues: ");
-    scanf("%d", int numberOfQueues);
-    printf("Number of Tasks: ");
-    scanf("%d", int numberOfTasks);
-    printf("Minimum transaction time: ");
-    scanf("%d", int taskMinimumTransactionTime);
-    printf("Maximum transaction time: ");
-    scanf("%d", int taskMaximumTransactionTime);
-    printf("Time between task arrivals: ");
-    scanf("%d", int timeBetweenTasks);
-
-    serverList = new ServerList(numberOfServers);
+    printf("hi");
+    Task *t = new Task(1,2,3,4);
+    printf("%d",t->getArrivalTime());
 
 
-    queue<Task> tasks;
-    int currentTaskNum=0;
+    Server *s = new Server();
 
-    for(int i = 0; i < simulationTime; i++)
-    {
-        //queue new tasks
-        if(i % timeBetweenTasks == 0 && numberOfTasks != 0)
-        {
-            tasks.push(new Task(currentTask, i, (rand() % (taskMaximumTransactionTime-taskMinimumTransactionTime)+taskMinimumTransactionTime),0));
-            currentTaskNum++;
-            numberOfTasks--;
-        }
-
-        //send task to server
-        int freeID=serverList.getFreeServerID();
-        if(freeID!=-1 && !tasks.empty()){
-            serverList.setServerBusy(freeID, tasks.front());
-            tasks.pop();
-        }
-
-        serverList.updateServers();
-
-
-        
-        serverList.decrementTheTransactionTimeOfAllTheBusyServersPlease();
-
-        Task tmpTasks = [numberOfTasks];
-        int tmpIndex=0;
-        while(!tasks.empty()){
-            tmpTasks[tmpIndex]=tasks.front();
-            tmpIndex++;
-            tasks.pop();
-        }
-        for(int i=0;i<numberOfTasks;i++){
-            tmpTasks[tmpIndex].waiting_time++;
-            tasks.push(tmpTasks[tmpIndex]);
-        }
-    }
-
-
-
-
-
-    printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    s->setCurrentTask(t);
+    printf("%d",s->getCurrentTaskWaitingTime());
     return 0;
-};
+}
