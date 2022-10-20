@@ -6,7 +6,6 @@
 using namespace std;
 
 
-
 class Task {
   public:    
     int task_number;  
@@ -46,11 +45,11 @@ class Task {
         return task_number;
     }
 
-    Task(int taskNum, int arrivalTime, int transactionTime, int waitingTime=0) {
+    Task(int taskNum, int arrivalTime, int waitingTime,int transactionTime) {
       task_number = taskNum;
       waiting_time = waitingTime;
       arrival_time = arrivalTime;
-      transaction_time = transaction_time;
+      transaction_time = transactionTime;
     }
 };
 
@@ -137,7 +136,6 @@ class ServerList{
                     return i;
                 }
             }
-            printf("no free servers");
             return -1;
         }
 
@@ -155,7 +153,6 @@ class ServerList{
         void decrementTheTransactionTimeOfAllTheBusyServersPlease(){
             for(int i=0;i<numOfServers;i++){
                 if(!servers[i]->isFree()){
-                    printf("should not trigger");
                     servers[i]->decreaseTransactionTime();
                 }
             }
@@ -232,7 +229,7 @@ int main() {
 	std::cout << "Enter number of servers:";
 	std::cin >> nus;
 	ServerList sList(nus);
-	
+
 	std::cout << "Enter number of tasks:";
 	std::cin >> nut;
 
@@ -267,7 +264,6 @@ int main() {
 			int r = rand();
 			r = (((r-0) * newRange) / oldRange) + tTimeL;
 			// Create a new task
-            printf("%d\n",r);
 			Task t(taskNu,tCo, 0, r);
 			tQueue.push(&t);
 			std::cout << "New task " << taskNu << " arrived at time " << tCo << " with transaction time of " << r << "\n";
@@ -278,13 +274,14 @@ int main() {
         }
 
 		// 4- Check if a server is free and tasks' queue is non empty to push a task
-        printf("%d",sList.getFreeServerID());
+        // printf("%d",sList.getFreeServerID());
         if(sList.getFreeServerID()!=-1 && !tQueue.isEmptyQueue()){
             sList.setServerBusy(sList.getFreeServerID(),tQueue.pop());
+            printf("task sent to server\n");
         }
-        else{
-            printf("no servers are free\n");
-        }
+        // else{
+        //     printf("no servers are free\n");
+        // }
 
 	}
 
