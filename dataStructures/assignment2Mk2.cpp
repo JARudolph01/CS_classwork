@@ -153,8 +153,9 @@ class ServerList{
         }
 
         void decrementTheTransactionTimeOfAllTheBusyServersPlease(){
-            for(int i=0;i<sizeof(servers);i++){
+            for(int i=0;i<numOfServers;i++){
                 if(!servers[i]->isFree()){
+                    printf("should not trigger");
                     servers[i]->decreaseTransactionTime();
                 }
             }
@@ -168,8 +169,8 @@ class ServerList{
         }
 
         void updateServers(){
-            for(int i=0;i<sizeof(servers);i++){
-            servers[i]->decreaseTransactionTime();
+            for(int i=0;i<numOfServers;i++){
+                servers[i]->decreaseTransactionTime();
             }
         }
 
@@ -193,15 +194,22 @@ int main(){
         transactionTimeMax,
         timeBetweenTasks;
 
-    printf("hi");
+    // printf("hi");
     Task *t = new Task(1,2,3,4);
-    printf("%d",t->getArrivalTime());
+    // printf("%d",t->getArrivalTime());
 
 
     Server *s = new Server();
+    Server *s2 = new Server();
+
+    ServerList sl = ServerList(5);
+
+    // printf("%d",sl.getFreeServerID());
+
+    sl.decrementTheTransactionTimeOfAllTheBusyServersPlease();
 
     s->setCurrentTask(t);
-    printf("%d",s->getCurrentTaskWaitingTime());
+    // printf("%d",s->getCurrentTaskWaitingTime());
     return 0;
 }
 
