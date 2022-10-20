@@ -114,8 +114,6 @@ class Server{
             return currentTask->transaction_time;
         }
 
-
-
         Server() {
             currentTask=NULL;
             status="Free";
@@ -128,7 +126,6 @@ class ServerList{
     
         Server **servers;
         int numOfServers;
-        // Server servers[numOfServers]={}
 
         const int getFreeServerID(){
             for(int i=0;i<numOfServers;i++){
@@ -158,7 +155,6 @@ class ServerList{
             }
         }
 
-
         void setServerBusy(int serverIndex,Task *task){
             servers[serverIndex]->setCurrentTask(task);
         }
@@ -182,7 +178,6 @@ class TaskQueue{
     public:
         Task **tasks;
         int numOfTasksInQueue=0;
-
 
         bool isEmptyQueue(){
             return numOfTasksInQueue<=0;
@@ -274,15 +269,10 @@ int main() {
         }
 
 		// 4- Check if a server is free and tasks' queue is non empty to push a task
-        // printf("%d",sList.getFreeServerID());
         if(sList.getFreeServerID()!=-1 && !tQueue.isEmptyQueue()){
             sList.setServerBusy(sList.getFreeServerID(),tQueue.pop());
             printf("task sent to server\n");
         }
-        // else{
-        //     printf("no servers are free\n");
-        // }
-
 	}
 
 	return 0;
