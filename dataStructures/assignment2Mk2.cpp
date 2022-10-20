@@ -175,11 +175,45 @@ class ServerList{
         }
 
         ServerList(int serverCount) {
-            serverCount=serverCount;
+            numOfServers=serverCount;
             servers=new Server*[serverCount];
             for(int i=0;i<serverCount;i++){
                 servers[i]=new Server();
             }
+        }
+};
+
+class TaskQueue{
+    public:
+        Task **tasks;
+        int numOfTasksInQueue=0;
+
+
+        bool isEmptyQueue(){
+            return numOfTasksInQueue<=0;
+        }
+
+        Task pop(){
+            Task *output = tasks[0];
+
+            numOfTasksInQueue--;
+            Task **newTasks = new Task*[numOfTasksInQueue];
+            for(int i=0;i<numOfTasksInQueue;i++){
+                newTasks[i]=tasks[i+1];
+            }
+            tasks=newTasks;
+
+            return *output;
+        }
+
+        void push(Task *t){
+            numOfTasksInQueue++;
+            Task **newTasks = new Task*[numOfTasksInQueue];
+            newTasks[0]=t;
+            for(int i=1;i<numOfTasksInQueue;i++){
+                newTasks[i]=tasks[i-1];
+            }
+            tasks=newTasks;
         }
 };
 
@@ -196,6 +230,7 @@ int main(){
 
     // printf("hi");
     Task *t = new Task(1,2,3,4);
+    Task *t2 = new Task(5,6,7,8);
     // printf("%d",t->getArrivalTime());
 
 
@@ -209,6 +244,17 @@ int main(){
     sl.decrementTheTransactionTimeOfAllTheBusyServersPlease();
 
     s->setCurrentTask(t);
+
+
+    TaskQueue q;
+    q.push(t);
+    q.push(t2);
+    printf("%d",q.pop().getArrivalTime());
+    printf("%d",q.pop().getArrivalTime());
+
+    // printf("%d",q.isEmptyQueue());
+
+
     // printf("%d",s->getCurrentTaskWaitingTime());
     return 0;
 }
