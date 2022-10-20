@@ -161,8 +161,6 @@ class ServerList{
             }
         }
 
-        void setServerBusy(int a, Task task, int b){ //no clue what he wants    
-        }
 
         void setServerBusy(int serverIndex,Task *task){
             servers[serverIndex]->setCurrentTask(task);
@@ -193,7 +191,7 @@ class TaskQueue{
             return numOfTasksInQueue<=0;
         }
 
-        Task pop(){
+        Task* pop(){
             Task *output = tasks[0];
 
             numOfTasksInQueue--;
@@ -203,7 +201,7 @@ class TaskQueue{
             }
             tasks=newTasks;
 
-            return *output;
+            return output;
         }
 
         void push(Task *t){
@@ -215,110 +213,127 @@ class TaskQueue{
             }
             tasks=newTasks;
         }
+
+        void updateWaitTime(){
+            for(int i=0;i<numOfTasksInQueue;i++){
+                tasks[i]->incrementWaitingTime();
+            }
+        }
 };
 
 
 
-int main(){
-    int 
-        simulationTime, 
-        numberOfServers, 
-        numberOfTasks, 
-        transactionTimeMin,
-        transactionTimeMax,
-        timeBetweenTasks;
+// int main(){
+//     int 
+//         simulationTime, 
+//         numberOfServers, 
+//         numberOfTasks, 
+//         transactionTimeMin,
+//         transactionTimeMax,
+//         timeBetweenTasks;
 
-    // printf("hi");
-    Task *t = new Task(1,2,3,4);
-    Task *t2 = new Task(5,6,7,8);
-    // printf("%d",t->getArrivalTime());
-
-
-    Server *s = new Server();
-    Server *s2 = new Server();
-
-    ServerList sl = ServerList(5);
-
-    // printf("%d",sl.getFreeServerID());
-
-    sl.decrementTheTransactionTimeOfAllTheBusyServersPlease();
-
-    s->setCurrentTask(t);
+//     // printf("hi");
+//     Task *t = new Task(1,2,3,4);
+//     Task *t2 = new Task(5,6,7,8);
+//     // printf("%d",t->getArrivalTime());
 
 
-    TaskQueue q;
-    q.push(t);
-    q.push(t2);
-    printf("%d",q.pop().getArrivalTime());
-    printf("%d",q.pop().getArrivalTime());
+//     Server *s = new Server();
+//     Server *s2 = new Server();
 
-    // printf("%d",q.isEmptyQueue());
+//     ServerList sl = ServerList(5);
+
+//     // printf("%d",sl.getFreeServerID());
+
+//     sl.decrementTheTransactionTimeOfAllTheBusyServersPlease();
+
+//     s->setCurrentTask(t);
 
 
-    // printf("%d",s->getCurrentTaskWaitingTime());
-    return 0;
-}
+//     TaskQueue q;
+//     q.push(t);
+//     q.push(t2);
+//     printf("%d",q.pop().getArrivalTime());
+//     printf("%d",q.pop().getArrivalTime());
 
-// int main() {
-// 	int nus, nut, tTimeL, tTimeU, aTimeRate, simTime;
+//     // printf("%d",q.isEmptyQueue());
 
-// 	taskQueue tQueue;
-	
-// 	std::cout << "Welcome to the tasks' simulator\n\n";
 
-// 	std::cout << "Enter number of servers:";
-// 	std::cin >> nus;
-// 	serverList sList(nus);
-	
-// 	std::cout << "Enter number of tasks:";
-// 	std::cin >> nut;
-
-// 	std::cout << "For transaction time, enter the range's lower value:";
-// 	std::cin >> tTimeL;
-
-// 	std::cout << "For transaction time, enter the range's upper value:";
-// 	std::cin >> tTimeU;
-
-// 	int oldRange = (RAND_MAX - 0);
-// 	int newRange = (tTimeU - tTimeL);
-
-// 	std::cout << "Enter task's arrival time rate:";
-// 	std::cin >> aTimeRate;
-
-// 	std::cout << "Enter total time of simulation:";
-// 	std::cin >> simTime;
-
-// 	srand(10);
-// 	int taskNu = 1;
-
-// 	for (int tCo = 1; tCo <= simTime; tCo++) {
-// 		std::cout << "Time: " << tCo << std::endl;
-// 		// 1- Update all servers transaction time (decrement by 1)
-// 		sList.updateServers();
-// 		// 2- Update waiting time (increment by 1) of all tasks in the queue
-// 		tQueue.updateWaitTime();
-// 		// 3- Check if it is time for arrival of tasks
-// 		if (tCo % aTimeRate == 0) {
-// 			// Generate random transaction time
-// 			int r = rand();
-// 			r = (((r-0) * newRange) / oldRange) + tTimeL;
-// 			// Create a new task
-// 			task t(taskNu,tCo, 0, r);
-// 			tQueue.addQueue(t);
-// 			std::cout << "New task " << taskNu << " arrived at time " << tCo << " with transaction time of " << r << "\n";
-// 			++taskNu;
-// 		}
-// 		// 4- Check if a server is free and tasks' queue is non empty to push a task
-// 		int sID = sList.getFreeServerID();
-// 		if (sID != -1) {
-// 			if (tQueue.isEmptyQueue() == false) {
-// 				task t = tQueue.front();
-// 				sList.setServerBusy(sID, t);
-// 				tQueue.deleteQueue();
-// 				std::cout << "Task " << t.getTaskNumber() << " is admitted to server " << sID << "\n";
-// 			}
-// 		}
-// 	}
-
-// 	return 0;
+//     // printf("%d",s->getCurrentTaskWaitingTime());
+//     return 0;
 // }
+
+int main() {
+	int nus, nut, tTimeL, tTimeU, aTimeRate, simTime;
+
+	TaskQueue tQueue;
+	
+	std::cout << "Welcome to the tasks' simulator\n\n";
+
+	std::cout << "Enter number of servers:";
+	std::cin >> nus;
+	ServerList sList(nus);
+	
+	std::cout << "Enter number of tasks:";
+	std::cin >> nut;
+
+	std::cout << "For transaction time, enter the range's lower value:";
+	std::cin >> tTimeL;
+
+	std::cout << "For transaction time, enter the range's upper value:";
+	std::cin >> tTimeU;
+
+	int oldRange = (RAND_MAX - 0);
+	int newRange = (tTimeU - tTimeL);
+
+	std::cout << "Enter task's arrival time rate:";
+	std::cin >> aTimeRate;
+
+	std::cout << "Enter total time of simulation:";
+	std::cin >> simTime;
+
+	srand(10);
+	int taskNu = 1;
+
+	for (int tCo = 1; tCo <= simTime; tCo++) {
+		std::cout << "Time: " << tCo << std::endl;
+		// 1- Update all servers transaction time (decrement by 1)
+		sList.updateServers();
+		// 2- Update waiting time (increment by 1) of all tasks in the queue
+		tQueue.updateWaitTime();
+        
+		// 3- Check if it is time for arrival of tasks
+		if (tCo % aTimeRate == 0) {
+			// Generate random transaction time
+			int r = rand();
+			r = (((r-0) * newRange) / oldRange) + tTimeL;
+			// Create a new task
+            printf("%d\n",r);
+			Task t(taskNu,tCo, 0, r);
+			tQueue.push(&t);
+			std::cout << "New task " << taskNu << " arrived at time " << tCo << " with transaction time of " << r << "\n";
+			++taskNu;
+		}
+
+         printf("wtf\n");
+         printf("%d",sList.getFreeServerID());
+
+		// 4- Check if a server is free and tasks' queue is non empty to push a task
+        if(sList.getFreeServerID()!=-1 && tQueue.isEmptyQueue()){
+            sList.setServerBusy(sList.getFreeServerID(),tQueue.pop());
+        }
+       
+
+
+		// int sID = sList.getFreeServerID();
+		// if (sID != -1) {
+		// 	if (tQueue.isEmptyQueue() == false) {
+		// 		sList.setServerBusy(sID, t);
+		// 		tQueue.pop();
+		// 		std::cout << "Task " << t.getTaskNumber() << " is admitted to server " << sID << "\n";
+		// 	}
+		// }
+	}
+
+	return 0;
+}
