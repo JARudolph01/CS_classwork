@@ -292,6 +292,7 @@ int main() {
 	std::cout << "Enter total time of simulation:";
 	std::cin >> simTime;
 
+
 	srand(10);
 	int taskNu = 1;
 
@@ -314,13 +315,20 @@ int main() {
 			std::cout << "New task " << taskNu << " arrived at time " << tCo << " with transaction time of " << r << "\n";
 			++taskNu;
 		}
+        else{
+            printf("not time for a new task yet\n");
+        }
 
-         printf("wtf\n");
-         printf("%d",sList.getFreeServerID());
+        //  printf("wtf\n");
+        //  printf("%d",sList.getNumberOfBusyServers());
 
 		// 4- Check if a server is free and tasks' queue is non empty to push a task
-        if(sList.getFreeServerID()!=-1 && tQueue.isEmptyQueue()){
+        printf("%d",sList.getFreeServerID());
+        if(sList.getFreeServerID()!=-1 && !tQueue.isEmptyQueue()){
             sList.setServerBusy(sList.getFreeServerID(),tQueue.pop());
+        }
+        else{
+            printf("no servers are free\n");
         }
        
 
