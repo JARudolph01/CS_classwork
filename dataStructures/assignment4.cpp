@@ -103,7 +103,7 @@ void postorder(Node* root){
 int main(){
     Node* tree=NULL;
 
-    // int initNumbers [21] = { 70, 60, 92, 50, 63, 82, 94, 40, 68, 72, 88, 98, 20, 45, 65, 75, 85, 96, 35, 80, 78 };
+    int initNumbers [21] = { 70, 60, 92, 50, 63, 82, 94, 40, 68, 72, 88, 98, 20, 45, 65, 75, 85, 96, 35, 80, 78 };
 
     for(int i=0;i<21;i++){
         tree=insertNode(tree,initNumbers[i]);
