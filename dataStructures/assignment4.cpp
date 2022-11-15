@@ -30,24 +30,6 @@ Node* insertNode(Node* root, int key){
 	return root;
 }
 
-Node* findNode(Node* root, int key){
-    //if root is null
-    if (root == NULL){
-        return NULL;
-    }
-
-    //else find the node
-    else if (key < root->data){
-        return findNode(root->left,key);
-    }
-    else if (key > root->data){
-        return findNode(root->right,key);
-    }
-    else{
-        return root;
-    }
-}
-
 //https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
 Node* maxValueNode(Node* root){
     Node* current = root;
