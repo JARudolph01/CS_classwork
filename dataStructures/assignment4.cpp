@@ -51,45 +51,29 @@ Node* findNode(Node* root, int key){
 //https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
 Node* minValueNode(Node* root){
     Node* current = root;
-  
-    /* loop down to find the leftmost leaf */
-    while (current && current->left != NULL)
+    while (current && current->left != NULL){
         current = current->left;
-  
+    }
     return current;
 }
 //https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
 Node* deleteNode(Node* root, int key){
-
-
-    // base case
-    if (root == NULL)
+    if (root == NULL){
         return root;
-
-
-    // If the key to be deleted is 
-    // smaller than the root's
-    // key, then it lies in left subtree
+    }
     if (key < root->data){
-        cout << "go left\n";
+        // cout << "go left\n";
         root->left = deleteNode(root->left, key);
     }
-    // If the key to be deleted is
-    // greater than the root's
-    // key, then it lies in right subtree
     else if (key > root->data){
-        cout << "go right\n";
+        // cout << "go right\n";
         root->right = deleteNode(root->right, key);
     }
-
     else{
-        // node has no child
         if (root->left==NULL and root->right==NULL){
-            cout << "no child\n";
+            // cout << "no child\n";
             return NULL;
         }
-                
-        // node with only one child or no child
         else if (root->left == NULL) {
             Node* temp = root->right;
             free(root);
@@ -100,19 +84,10 @@ Node* deleteNode(Node* root, int key){
             free(root);
             return temp;
         }
-
-        // node with two children: Get the inorder successor
-        // (smallest in the right subtree)
         Node* temp = minValueNode(root->right);
-
-        // Copy the inorder successor's content to this node
         root->data = temp->data;
-
-        // Delete the inorder successor
         root->right = deleteNode(root->right, temp->data);
-
         return root;
-
     }
     return root;
 }
