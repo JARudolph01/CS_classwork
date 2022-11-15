@@ -121,7 +121,7 @@ void postorder(Node* root){
 int main(){
     Node* tree=NULL;
 
-    int initNumbers [21] = { 70, 60, 92, 50, 63, 82, 94, 40, 68, 72, 88, 98, 20, 45, 65, 75, 85, 96, 35, 80, 78 };
+    // int initNumbers [21] = { 70, 60, 92, 50, 63, 82, 94, 40, 68, 72, 88, 98, 20, 45, 65, 75, 85, 96, 35, 80, 78 };
 
     for(int i=0;i<21;i++){
         tree=insertNode(tree,initNumbers[i]);
@@ -130,55 +130,41 @@ int main(){
     //main menu
 
     while(true){
-        printf("1- Insert a new node.\n2- Print the tree using inorder traversal\n3- Print the tree using preorder traversal\n4- Print the tree using postorder traversal\n5- Delete a node\n\nEnter your selection: ");
+        printf("\n1- Insert a new node.\n2- Print the tree using inorder traversal\n3- Print the tree using preorder traversal\n4- Print the tree using postorder traversal\n5- Delete a node\n\nEnter your selection: ");
         
         char input;
         cin >> input;
         if(input=='1'){
             printf("insert node\n");
+            printf("enter the key of the node to insert: ");
+            int key;
+            cin >> key;
+            insertNode(tree,key);
+
         }
         else if(input=='2'){
             printf("inorder\n");
+            inorder(tree);
         }
         else if(input=='3'){
             printf("preorder\n");
+            preorder(tree);
         }
         else if(input=='4'){
             printf("postorder\n");
+            postorder(tree);
         }
         else if(input=='5'){
             printf("delete\n");
+            printf("enter the key of the node to delete: ");
+            int key;
+            cin >> key;
+            deleteNode(tree,key);
         }
         else{
             printf("invalid selection\n");
         }
     }
-
-
-
-
-    // cout<<"inorder: ";
-    // inorder(tree);
-    // cout<<"\npreorder: ";
-    // preorder(tree);
-    // cout<<"\npostorder: ";
-    // postorder(tree);
-    // cout<<endl;
-
-
-    // cout<<"\ndeleting node\n";
-    // deleteNode(tree,63);
-
-
-    // cout<<"inorder: ";
-    // inorder(tree);
-    // cout<<"\npreorder: ";
-    // preorder(tree);
-    // cout<<"\npostorder: ";
-    // postorder(tree);
-    // cout<<endl;
-
-
 
     return 0;
 }
