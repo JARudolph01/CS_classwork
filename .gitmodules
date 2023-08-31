@@ -1,0 +1,3 @@
+[submodule "orgOfProgrammingLanguages/rust-tui/ratatui"]
+	path = orgOfProgrammingLanguages/rust-tui/ratatui
+	url = https://github.com/ratatui-org/ratatui.git
