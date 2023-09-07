@@ -1,10 +1,10 @@
-
-
 fn main() {
 
     /*
     Q1:
-    Write a program using Rust programming language that defines two different integer variables, assigns values, and prints them. Also, update the second one to be equal to double the value of the first variable only if the second variable is greater than the first variable; otherwise, add 5 to the second variable, then print the updated value for the second variable.
+    Write a program using Rust programming language that defines two different integer variables, assigns values, and prints them. 
+    Also, update the second one to be equal to double the value of the first variable only if the second variable is greater than the first variable; 
+    otherwise, add 5 to the second variable, then print the updated value for the second variable.
     */
     println!("Q1:");
     let a = 1;
@@ -36,9 +36,9 @@ fn main() {
     /*
     Q3:
     Define an array of integers in the range from 1 to 5, then:
-        Print the array.
-        Print the length of the array.
-        Print the even numbers in the array using a for loop.
+        a) Print the array.
+        b) Print the length of the array.
+        c) Print the even numbers in the array using a for loop.
     */
     println!("Q3:");
     let arr = [1,2,3,4,5];
