@@ -1,5 +1,5 @@
 fn main() {
-    println!("Hello World!");
+    println!("");
 
     println!("enter your name: ");
     
@@ -9,6 +9,11 @@ fn main() {
     println!("{}",add(1,-2));
 
     
+}
+
+fn array_test(){
+    let mut array: [i64; 3] = [0; 3];
+    println(array[2]);
 }
 
 fn add(a: i64, b: i64) -> i64 {
@@ -22,17 +27,3 @@ fn user_input () -> String {
     io::stdin().read_line(&mut user_in).expect("failed to readline");
     user_in
 }
-
-// fn fizz_buzz() {
-//     for x in 1..=100 {
-//         if x % 15 == 0 {
-//             println!("FizzBuzz")
-//         } else if x % 3 == 0 {
-//             println!("Fizz")
-//         } else if x % 5 == 0 {
-//             println!("Buzz")
-//         } else {
-//             println!("{}", x)
-//         }
-//     }
-// }
