@@ -54,15 +54,27 @@ def tokenizer(code):
         char = code[i]
         if char in ['+', '-', '*', '/', '%', '=','!']:
             if char == '*' and code[i+1] == '*':
+                if token != '':
+                    tokens.append(token)
+                    token = ''
                 tokens.append('**')
                 i+=1
             elif char == '=' and code[i+1] == '=':
+                if token != '':
+                    tokens.append(token)
+                    token = ''
                 tokens.append('==')
                 i+=1
             elif char == '!' and code[i+1] == '=':
+                if token != '':
+                    tokens.append(token)
+                    token = ''
                 tokens.append('!=')
                 i+=1    
             else:
+                if token != '':
+                    tokens.append(token)
+                    token = ''
                 tokens.append(char)
         elif char == ' ' and token != '':
             tokens.append(token)
