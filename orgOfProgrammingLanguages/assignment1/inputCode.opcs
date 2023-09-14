@@ -1,2 +1,2 @@
-result = x + y / 2 ""Result Equation"" 
-area = ""time to get funky"" Pi*r**2
+result = x + y / 2      ""Result Equation"" 
+_are_a = ""time to get funky"" Pi*r**2 if hi

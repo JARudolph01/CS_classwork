@@ -28,7 +28,7 @@ print(input_code)
 
 def preprocessor(code):
     # remove spaces
-    code = code.replace(' ', '')
+    # code = code.replace(' ', '')
 
     # remove comments between double double quotes
     while code.find('""') != -1:
@@ -49,14 +49,29 @@ def tokenizer(code):
     # convert code to list of tokens
     tokens = []
     token = ''
-    for char in code:
-        if char in ['+', '-', '*', '**', '/', '%', '=', '==','!=']:
-            if token != '':
-                tokens.append(token)
-                token = ''
-            tokens.append(char)
-        else:
+    i=0
+    while i < len(code):
+        char = code[i]
+        if char in ['+', '-', '*', '/', '%', '=','!']:
+            if char == '*' and code[i+1] == '*':
+                tokens.append('**')
+                i+=1
+            elif char == '=' and code[i+1] == '=':
+                tokens.append('==')
+                i+=1
+            elif char == '!' and code[i+1] == '=':
+                tokens.append('!=')
+                i+=1    
+            else:
+                tokens.append(char)
+        elif char == ' ' and token != '':
+            tokens.append(token)
+            token = ''
+        elif char != ' ':
             token += char
+        i+=1
+
+
     if token != '':
         tokens.append(token)
     
@@ -74,11 +89,11 @@ def scanner(tokens):
     # convert list of tokens to list of tuples (token_type, token_value)
     scanned_tokens = []
     for token in tokens:
-        if token in ['+', '-', '*', '**', '/', '%', '==','!=']:
+        if token in ['+', '-', '*', '**', '/', '%']:
             scanned_tokens.append(('ARITHMATIC_OPERATOR:'+token))
         elif token == '=':
             scanned_tokens.append(('ASSIGNMENT_OPERATOR:'+token))
-        elif token in ['and', 'or']:
+        elif token in ['and', 'or', '==','!=']:
             scanned_tokens.append(('LOGICAL_OPERATOR:'+token))
         elif token in ['if', 'then']:
             scanned_tokens.append(('KEYWORD:'+token))
@@ -88,6 +103,8 @@ def scanner(tokens):
             scanned_tokens.append(('IDENTIFIER:'+token))
     
     return scanned_tokens
+
+
 
 
 
