@@ -17,7 +17,16 @@ count as comments.
 # preprocessor: result=x+y/2
 # scanner: (IDENTIFIER: _result) (ASSIGNMENT_OPEREATOR: =) (IDENTIFIER: x) (ARITHMATIC_OPERATOR: +) (DIGIT: 2) (ARITHMATIC_OPERATOR: /) (DIGIT: 2)
 
-input_code = ' result = x + y / 2 ""Result Equation"" '
+# input_code = ' result = x + y / 2 ""Result Equation"" '
+
+# read input code from file
+input_code = ''
+with open('inputCode.opcs', 'r') as file:
+    input_code = file.read()
+
+input_code = input_code.split('\n')
+
+print(input_code)
 
 def preprocessor(code):
     # remove spaces
@@ -32,7 +41,9 @@ def preprocessor(code):
     return code
 
 
-preprocessed_code = preprocessor(input_code)
+preprocessed_code = []
+for line in input_code:
+    preprocessed_code.append(preprocessor(line))
 print(preprocessed_code)
 
 
@@ -53,8 +64,13 @@ def tokenizer(code):
     
     return tokens
 
-tokens=tokenizer(preprocessed_code)
-print(tokens) 
+tokens=[]
+for line in preprocessed_code:
+    tokens.append(tokenizer(line))
+
+print(tokens)
+
+
 
 def scanner(tokens):
     # convert list of tokens to list of tuples (token_type, token_value)
@@ -75,5 +91,9 @@ def scanner(tokens):
     
     return scanned_tokens
 
-scanned_tokens = scanner(tokens)
+
+
+scanned_tokens = []
+for line in tokens:
+    scanned_tokens.append(scanner(line))
 print(scanned_tokens)
