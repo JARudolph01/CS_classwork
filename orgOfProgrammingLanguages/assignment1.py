@@ -55,3 +55,25 @@ def tokenizer(code):
 
 tokens=tokenizer(preprocessed_code)
 print(tokens) 
+
+def scanner(tokens):
+    # convert list of tokens to list of tuples (token_type, token_value)
+    scanned_tokens = []
+    for token in tokens:
+        if token in ['+', '-', '*', '**', '/', '%', '==','!=']:
+            scanned_tokens.append(('ARITHMATIC_OPERATOR', token))
+        elif token == '=':
+            scanned_tokens.append(('ASSIGNMENT_OPERATOR', token))
+        elif token in ['and', 'or']:
+            scanned_tokens.append(('LOGICAL_OPERATOR', token))
+        elif token in ['if', 'then']:
+            scanned_tokens.append(('KEYWORD', token))
+        elif token.isdigit():
+            scanned_tokens.append(('DIGIT', token))
+        else:
+            scanned_tokens.append(('IDENTIFIER', token))
+    
+    return scanned_tokens
+
+scanned_tokens = scanner(tokens)
+print(scanned_tokens)
