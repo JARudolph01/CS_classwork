@@ -11,13 +11,11 @@ the identifier must start with either a letter or an underscore.
 6- Assignment operator: =.
 7- Comments: Any line (or lines) that starts with “” and ends with “” will
 count as comments.
+
+input: result = x + y / 2 ""Result Equation""
+preprocessor: result=x+y/2
+scanner: (IDENTIFIER: _result) (ASSIGNMENT_OPEREATOR: =) (IDENTIFIER: x) (ARITHMATIC_OPERATOR: +) (DIGIT: 2) (ARITHMATIC_OPERATOR: /) (DIGIT: 2)
 """
-
-# input: result = x + y / 2 ""Result Equation""
-# preprocessor: result=x+y/2
-# scanner: (IDENTIFIER: _result) (ASSIGNMENT_OPEREATOR: =) (IDENTIFIER: x) (ARITHMATIC_OPERATOR: +) (DIGIT: 2) (ARITHMATIC_OPERATOR: /) (DIGIT: 2)
-
-# input_code = ' result = x + y / 2 ""Result Equation"" '
 
 # read input code from file
 input_code = ''
@@ -77,17 +75,17 @@ def scanner(tokens):
     scanned_tokens = []
     for token in tokens:
         if token in ['+', '-', '*', '**', '/', '%', '==','!=']:
-            scanned_tokens.append(('ARITHMATIC_OPERATOR', token))
+            scanned_tokens.append(('ARITHMATIC_OPERATOR:'+token))
         elif token == '=':
-            scanned_tokens.append(('ASSIGNMENT_OPERATOR', token))
+            scanned_tokens.append(('ASSIGNMENT_OPERATOR:'+token))
         elif token in ['and', 'or']:
-            scanned_tokens.append(('LOGICAL_OPERATOR', token))
+            scanned_tokens.append(('LOGICAL_OPERATOR:'+token))
         elif token in ['if', 'then']:
-            scanned_tokens.append(('KEYWORD', token))
+            scanned_tokens.append(('KEYWORD:'+token))
         elif token.isdigit():
-            scanned_tokens.append(('DIGIT', token))
+            scanned_tokens.append(('DIGIT:'+token))
         else:
-            scanned_tokens.append(('IDENTIFIER', token))
+            scanned_tokens.append(('IDENTIFIER:'+token))
     
     return scanned_tokens
 
