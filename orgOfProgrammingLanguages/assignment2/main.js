@@ -158,8 +158,8 @@ console.log(NFA)
 ]
 */
 
-
-//find epsilon closure of a state NON recursive
+//part 2
+//find epsilon closure of a state
 function epsilonClosure(stateId, NFA) {
     var closure = [];
     closure.push(stateId);
@@ -167,7 +167,7 @@ function epsilonClosure(stateId, NFA) {
     var nodesUnderConsideration = [];
 
     nodesUnderConsideration.push(stateId);
-    
+
     while (nodesUnderConsideration.length > 0) {
         NFA[nodesUnderConsideration[0]].paths.forEach(function(path) {
             if(path.data == 'ε') {
@@ -185,4 +185,27 @@ function epsilonClosure(stateId, NFA) {
     return closure;
 }
 
-console.log(epsilonClosure(1, NFA));
+console.log(epsilonClosure(13, NFA));
+
+
+
+//part 3
+//convert the NFA to DFA by skipping over epsilon transitions
+
+
+function convertNFAtoDFA(nfa) {
+    var DFA = [];
+    DFA.push(nfa[0]);
+
+    DFA[0].paths.forEach(function(path) {
+        if(path.data == 'ε') {
+            DFA[0].paths.shift();
+            DFA[0].paths = DFA[0].paths.concat(nfa[path.id].paths);
+        }
+    });
+    console.log(DFA[0]);
+}
+
+
+
+convertNFAtoDFA(NFA);
