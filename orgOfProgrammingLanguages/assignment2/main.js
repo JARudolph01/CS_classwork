@@ -163,26 +163,26 @@ console.log(NFA)
 function epsilonClosure(stateId, NFA) {
     var closure = [];
     closure.push(stateId);
-    var state = NFA[stateId];
-    var paths = state.paths;
-    for (var i = 0; i < paths.length; i++) {
-        if (paths[i].data == "ε") {
-            if (closure.indexOf(paths[i].id) == -1){
-                closure.push(paths[i].id);
-            }
-            var state2 = NFA[paths[i].id];
-            var paths2 = state2.paths;
-            for (var j = 0; j < paths2.length; j++) {
-                if (paths2[j].data == "ε") {
-                    if (closure.indexOf(paths2[j].id) == -1){
-                        closure.push(paths2[j].id);
-                    }
+    
+    var nodesUnderConsideration = [];
+
+    nodesUnderConsideration.push(stateId);
+    
+    while (nodesUnderConsideration.length > 0) {
+        NFA[nodesUnderConsideration[0]].paths.forEach(function(path) {
+            if(path.data == 'ε') {
+                // if not already in nodesUnderConsideration
+                if(nodesUnderConsideration.indexOf(path.id) == -1 && closure.indexOf(path.id) == -1) {
+                    nodesUnderConsideration.push(path.id);
+                    closure.push(path.id);
+                    // console.log(path.id);
                 }
             }
-        }
-            
+        });
+        nodesUnderConsideration.shift();
     }
+    
     return closure;
 }
 
-console.log(epsilonClosure(2, NFA));
+console.log(epsilonClosure(1, NFA));
