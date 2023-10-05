@@ -242,6 +242,14 @@ function convertNFAtoDFA(nfa) {
         // console.log(oldpaths)
     }
 
+    //now we can remove all epsilon transitions
+    DFA[0].paths.forEach(function(path) {
+        if(path.data == 'ε') {
+            // DFA[0].paths.splice(DFA[0].paths.indexOf(path),1);
+            DFA[0].paths = DFA[0].paths.filter(function(e) { return e.data != 'ε' })
+        }
+    });
+
 
 
    
