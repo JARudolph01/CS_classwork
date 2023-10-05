@@ -195,15 +195,57 @@ console.log(epsilonClosure(13, NFA));
 
 function convertNFAtoDFA(nfa) {
     var DFA = [];
-    DFA.push(nfa[0]);
+    DFA.push(nfa[1]);
 
-    DFA[0].paths.forEach(function(path) {
-        if(path.data == 'ε') {
-            DFA[0].paths.shift();
-            DFA[0].paths = DFA[0].paths.concat(nfa[path.id].paths);
-        }
-    });
-    console.log(DFA[0]);
+
+    //while paths contains epsilon transitions
+    oldpaths = []
+
+
+    function arraysEqual(a1,a2) {
+        /* WARNING: arrays must not contain {objects} or behavior may be undefined */
+        return JSON.stringify(a1)==JSON.stringify(a2);
+    }
+
+
+    while ( !arraysEqual(DFA[0].paths,oldpaths)) {
+        
+        // console.log("DFA[0]: ")
+        // console.log(DFA[0].paths)
+        // console.log("oldpaths: ")
+        // console.log(oldpaths)
+
+        //copy value of DFA[0].paths, not refrence
+        oldpaths = []
+        DFA[0].paths.forEach(function(path) {
+            oldpaths.push(path);
+        });
+
+        // console.log(oldpaths==DFA[0].paths)
+
+        DFA[0].paths.forEach(function(path) {
+            if(path.data == 'ε') {
+                // add the paths of the next node, if not already present
+                NFA[path.id].paths.forEach(function(nextPath) {
+
+                    if (DFA[0].paths.indexOf(nextPath) == -1) {
+                        console.log("added path: "+nextPath.id)
+                        DFA[0].paths.push(nextPath);
+                    }
+                });
+            }       
+        });  
+
+        // console.log("DFA[0]: ")
+        // console.log(DFA[0].paths)
+        // console.log("oldpaths: ")
+        // console.log(oldpaths)
+    }
+
+
+
+   
+    console.log(DFA[0].paths);
 }
 
 
