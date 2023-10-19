@@ -2,161 +2,9 @@
 
 var fs = require('fs');
 var NFA = JSON.parse(fs.readFileSync('nfa.json', 'utf8'));
+console.log("part 1:")
 console.log(NFA)
 
-
-//example of NFA
-/*[
-    {
-        "id":0,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":1,
-                "data":"a"
-            }
-        ]
-    },
-    {
-        "id":1,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":2,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":2,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":3,
-                "data":"ε"
-            },
-            {
-                "id":13,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":3,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":4,
-                "data":"ε"
-            },
-            {
-                "id":8,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":4,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":5,
-                "data":"c"
-            }
-        ]
-    },
-    {
-        "id":5,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":6,
-                "data":"o"
-            }
-        ]
-    },
-    {
-        "id":6,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":7,
-                "data":"w"
-            }
-        ]
-    },
-    {
-        "id":7,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":12,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":8,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":9,
-                "data":"c"
-            }
-        ]
-    },
-    {
-        "id":9,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":10,
-                "data":"a"
-            }
-        ]
-    },
-    {
-        "id":10,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":11,
-                "data":"t"
-            }
-        ]
-    },
-    {
-        "id":11,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":12,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":12,
-        "isEnd":false,
-        "paths": [
-            {
-                "id":13,
-                "data":"ε"
-            }
-        ]
-    },
-    {
-        "id":13,
-        "isEnd":true,
-        "paths": [
-            {
-                "id":2,
-                "data":"ε"
-            }
-        ]
-    }
-]
-*/
 
 //part 2
 //find epsilon closure of a state
@@ -184,7 +32,7 @@ function epsilonClosure(stateId, NFA) {
     
     return closure;
 }
-
+console.log("part 2:")
 console.log(epsilonClosure(13, NFA));
 
 
@@ -222,7 +70,7 @@ function convertNFAtoDFA(nfa) {
                     NFA[path.id].paths.forEach(function(nextPath) {
 
                         if (DFA[i].paths.indexOf(nextPath) == -1) {
-                            console.log("added path: "+nextPath.id)
+                            // console.log("added path: "+nextPath.id)
                             DFA[i].paths.push(nextPath);
                         }
                     });
@@ -238,8 +86,8 @@ function convertNFAtoDFA(nfa) {
         });
 
 
-        console.log("DFA["+i+"]");
-        console.log(DFA[i]);
+        // console.log("DFA["+i+"]");
+        // console.log(DFA[i]);
         i++;
         
         //add paths to DFA, unless already present
@@ -251,6 +99,12 @@ function convertNFAtoDFA(nfa) {
     }
 
     // console.log(DFA[i].paths);
+
+    //print dfa
+    console.log("part 3:")
+    for (var i = 0; i < DFA.length; i++) {
+        console.log(DFA[i]);
+    }
 }
 
 
