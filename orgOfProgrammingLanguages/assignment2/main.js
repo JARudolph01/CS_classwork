@@ -33,7 +33,7 @@ function epsilonClosure(stateId, NFA) {
     return closure;
 }
 console.log("part 2:")
-console.log(epsilonClosure(13, NFA));
+console.log(epsilonClosure(7, NFA));
 
 
 
@@ -47,7 +47,7 @@ function arraysEqual(a1,a2) {
 
 function convertNFAtoDFA(nfa) {
     var DFA = [];
-    DFA.push(nfa[1]);
+    DFA.push(nfa[0]);
 
     var i = 0;
     while (i<DFA.length) {
