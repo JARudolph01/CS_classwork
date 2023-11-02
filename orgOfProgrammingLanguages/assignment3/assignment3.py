@@ -43,7 +43,7 @@ while len(S):
         alpha = grammar[parseTable[non_terminals.index(X)][terminals.index(c)]-1][1:]
 
         # print rule
-        print(" "+str(grammar[parseTable[non_terminals.index(X)][terminals.index(c)]-1]))
+        print(" "+str(grammar[parseTable[non_terminals.index(X)][terminals.index(c)]-1]),end="")
         
         # push alpha in reverse order
         alpha=alpha[::-1]
@@ -54,5 +54,6 @@ while len(S):
     elif parseTable[non_terminals.index(X)][terminals.index(c)]==0:
         print('error, no entry in parse table.')
         quit()
+    print()
     
 print()
